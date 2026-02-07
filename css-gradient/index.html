@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free CSS Gradient Generator Online | GradientForge</title>
+<meta name="description" content="Free online CSS gradient generator. Build beautiful linear and radial gradients visually. Add color stops, adjust angles, copy CSS code instantly. No signup, no ads.">
+<meta name="keywords" content="css gradient generator, gradient maker, linear gradient, radial gradient, css gradient tool, gradient builder, color gradient css, gradient preview, css background gradient, gradient code">
+<meta name="robots" content="index, follow">
+<meta name="author" content="GradientForge">
+<link rel="canonical" href="https://christian140903-sudo.github.io/devtoolkit/css-gradient/">
+<meta property="og:title" content="Free CSS Gradient Generator Online | GradientForge">
+<meta property="og:description" content="Build beautiful CSS gradients visually. Linear and radial support, color stops, angle control. Copy CSS code instantly. 100% free.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://christian140903-sudo.github.io/devtoolkit/css-gradient/">
+<meta property="og:site_name" content="DevToolkit">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free CSS Gradient Generator Online">
+<meta name="twitter:description" content="Build beautiful CSS gradients visually. Copy CSS code instantly. Free, no signup required.">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"GradientForge","url":"https://christian140903-sudo.github.io/devtoolkit/css-gradient/","description":"Free online CSS gradient generator with visual builder","applicationCategory":"DeveloperApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#050508;--surface:#0d0d14;--surface2:#14141f;--border:#1e1e2e;--primary:#6366f1;--primary-glow:rgba(99,102,241,.15);--accent:#a855f7;--text:#e2e8f0;--text-muted:#94a3b8;--success:#22c55e;--error:#ef4444;--radius:16px;--font:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif}
+body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;line-height:1.6}
+a{color:var(--primary);text-decoration:none}
+a:hover{text-decoration:underline}
+.container{max-width:900px;margin:0 auto;padding:2rem 1.5rem}
+header{text-align:center;padding:3rem 0 2rem}
+header h1{font-size:clamp(1.8rem,4vw,2.5rem);font-weight:800;letter-spacing:-.5px;background:linear-gradient(135deg,var(--primary),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+header p{color:var(--text-muted);margin-top:.5rem;font-size:1.05rem}
+.back-link{display:inline-flex;align-items:center;gap:.5rem;color:var(--text-muted);font-size:.9rem;margin-bottom:1rem;transition:color .2s}
+.back-link:hover{color:var(--primary);text-decoration:none}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;margin-bottom:1.5rem}
+label{display:block;font-size:.85rem;font-weight:600;color:var(--text-muted);margin-bottom:.5rem;text-transform:uppercase;letter-spacing:.5px}
+.btn{padding:.65rem 1.25rem;border:none;border-radius:10px;font-size:.9rem;font-weight:600;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:.5rem}
+.btn-primary{background:var(--primary);color:#fff}
+.btn-primary:hover{background:#4f46e5;transform:translateY(-1px);box-shadow:0 4px 15px var(--primary-glow)}
+.btn-secondary{background:var(--surface2);color:var(--text);border:1px solid var(--border)}
+.btn-secondary:hover{border-color:var(--primary);color:var(--primary)}
+.btn-sm{padding:.4rem .8rem;font-size:.8rem}
+.status{padding:.5rem 1rem;border-radius:8px;font-size:.85rem;font-weight:500;margin-top:.75rem;display:none}
+.status.success{display:block;background:rgba(34,197,94,.1);color:var(--success);border:1px solid rgba(34,197,94,.2)}
+.status.error{display:block;background:rgba(239,68,68,.1);color:var(--error);border:1px solid rgba(239,68,68,.2)}
+
+/* Preview */
+.preview-box{width:100%;height:250px;border-radius:12px;border:1px solid var(--border);margin-bottom:1rem;transition:all .3s}
+.preview-box.fullscreen{position:fixed;inset:0;z-index:1000;height:100vh;border-radius:0;border:none;margin:0}
+.fullscreen-close{display:none;position:fixed;top:1.5rem;right:1.5rem;z-index:1001;background:rgba(0,0,0,.7);color:#fff;border:1px solid rgba(255,255,255,.2);border-radius:10px;padding:.5rem 1rem;font-size:.9rem;cursor:pointer;font-weight:600;backdrop-filter:blur(8px)}
+.preview-box.fullscreen~.fullscreen-close{display:block}
+
+/* Controls */
+.controls-row{display:flex;gap:1rem;margin-bottom:1rem;flex-wrap:wrap;align-items:end}
+.controls-row .control-group{flex:1;min-width:120px}
+.controls-row select,.controls-row input[type="number"]{width:100%;padding:.6rem .8rem;background:var(--surface2);border:1px solid var(--border);border-radius:10px;color:var(--text);font-size:.9rem;outline:none;transition:border-color .2s}
+.controls-row select:focus,.controls-row input[type="number"]:focus{border-color:var(--primary)}
+
+/* Color Stops */
+.stops-list{display:flex;flex-direction:column;gap:.75rem;margin-bottom:1rem}
+.stop-row{display:flex;align-items:center;gap:.75rem;padding:.6rem .8rem;background:var(--surface2);border-radius:10px;border:1px solid var(--border)}
+.stop-row input[type="color"]{width:40px;height:34px;border:none;border-radius:8px;cursor:pointer;background:transparent;padding:0}
+.stop-row input[type="color"]::-webkit-color-swatch-wrapper{padding:0}
+.stop-row input[type="color"]::-webkit-color-swatch{border:1px solid var(--border);border-radius:6px}
+.stop-row input[type="range"]{flex:1;accent-color:var(--primary);height:6px}
+.stop-row .stop-pos{font-size:.8rem;color:var(--text-muted);min-width:35px;text-align:right;font-variant-numeric:tabular-nums}
+.stop-row .remove-stop{background:none;border:none;color:var(--error);cursor:pointer;font-size:1.1rem;padding:0 .3rem;opacity:.6;transition:opacity .2s}
+.stop-row .remove-stop:hover{opacity:1}
+
+/* CSS Output */
+.css-output{width:100%;min-height:80px;padding:1rem;background:var(--surface2);border:1px solid var(--border);border-radius:12px;color:var(--primary);font-family:'SF Mono',Monaco,Consolas,monospace;font-size:.85rem;resize:none;line-height:1.6;outline:none}
+.css-output:focus{border-color:var(--primary)}
+
+/* Actions */
+.actions{display:flex;gap:.75rem;margin:1rem 0;flex-wrap:wrap}
+
+/* Presets */
+.presets-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:.75rem}
+.preset-swatch{height:60px;border-radius:10px;cursor:pointer;border:2px solid transparent;transition:all .2s;position:relative}
+.preset-swatch:hover{transform:translateY(-2px);border-color:var(--primary);box-shadow:0 4px 15px rgba(0,0,0,.4)}
+.preset-swatch:focus{outline:none;border-color:var(--primary)}
+.preset-swatch .preset-name{position:absolute;bottom:4px;left:0;right:0;text-align:center;font-size:.6rem;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.8);font-weight:600}
+
+.info-section{margin-top:2rem}
+.info-section h2{font-size:1.2rem;font-weight:700;margin-bottom:1rem}
+.info-section p{color:var(--text-muted);font-size:.95rem;margin-bottom:.75rem}
+.info-section code{background:var(--surface2);padding:.15rem .4rem;border-radius:4px;font-size:.85rem;color:var(--primary)}
+footer{text-align:center;padding:2rem 0;color:var(--text-muted);font-size:.85rem;border-top:1px solid var(--border);margin-top:3rem}
+.ecosystem{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-top:2rem}
+.eco-link{display:block;padding:1rem;background:var(--surface);border:1px solid var(--border);border-radius:12px;transition:all .2s;text-decoration:none}
+.eco-link:hover{border-color:var(--primary);transform:translateY(-2px);text-decoration:none}
+.eco-link strong{display:block;color:var(--text);font-size:.95rem}
+.eco-link span{color:var(--text-muted);font-size:.8rem}
+@media(max-width:600px){.container{padding:1rem}.controls-row{flex-direction:column}.actions{flex-direction:column}.btn{justify-content:center}.presets-grid{grid-template-columns:repeat(auto-fill,minmax(80px,1fr))}}
+</style>
+</head>
+<body>
+<div class="container">
+<a href="../" class="back-link" aria-label="Back to DevToolkit">&larr; Back to DevToolkit</a>
+<header>
+<h1>CSS Gradient Generator</h1>
+<p>Build beautiful gradients visually. Copy the CSS code with one click.</p>
+</header>
+
+<div class="card">
+<div class="preview-box" id="preview" role="img" aria-label="Gradient preview"></div>
+<button class="fullscreen-close" id="fullscreenClose" aria-label="Exit fullscreen">&#10005; Close</button>
+
+<div class="controls-row">
+<div class="control-group">
+<label for="gradientType">Type</label>
+<select id="gradientType" aria-label="Gradient type">
+<option value="linear">Linear</option>
+<option value="radial">Radial</option>
+</select>
+</div>
+<div class="control-group" id="angleGroup">
+<label for="angleInput">Angle</label>
+<input type="number" id="angleInput" min="0" max="360" value="135" aria-label="Gradient angle in degrees">
+</div>
+<div class="control-group" id="shapeGroup" style="display:none">
+<label for="radialShape">Shape</label>
+<select id="radialShape" aria-label="Radial gradient shape">
+<option value="circle">Circle</option>
+<option value="ellipse">Ellipse</option>
+</select>
+</div>
+</div>
+
+<label>Color Stops</label>
+<div class="stops-list" id="stopsList" role="list" aria-label="Gradient color stops"></div>
+<div class="actions">
+<button class="btn btn-secondary btn-sm" onclick="addStop()" aria-label="Add color stop">+ Add Stop</button>
+</div>
+
+<div style="margin-top:1rem">
+<label for="cssOutput">CSS Code</label>
+<textarea class="css-output" id="cssOutput" readonly spellcheck="false" aria-label="Generated CSS code"></textarea>
+</div>
+
+<div class="actions">
+<button class="btn btn-primary" onclick="copyCSS()" aria-label="Copy CSS code to clipboard">Copy CSS</button>
+<button class="btn btn-secondary" onclick="toggleFullscreen()" aria-label="Toggle fullscreen preview">Fullscreen Preview</button>
+<button class="btn btn-secondary" onclick="randomGradient()" aria-label="Generate random gradient">Random</button>
+</div>
+<div class="status" id="status"></div>
+</div>
+
+<div class="card">
+<label>Preset Gradients</label>
+<div class="presets-grid" id="presetsGrid" role="list" aria-label="Preset gradient gallery"></div>
+</div>
+
+<div class="info-section card">
+<h2>What are CSS Gradients?</h2>
+<p>CSS gradients let you display smooth transitions between two or more colors as backgrounds. They are generated by the browser, not images, so they scale perfectly at any resolution and are very performant.</p>
+<p>There are two main types: <code>linear-gradient()</code> creates color transitions along a straight line at a given angle, while <code>radial-gradient()</code> radiates colors outward from a center point in a circular or elliptical shape.</p>
+<p>Color stops define where each color appears along the gradient. You can add multiple stops and position them precisely using percentages to create complex, multi-color effects.</p>
+</div>
+
+<div class="info-section">
+<h2>More from NexTool</h2>
+<div class="ecosystem">
+<a href="../" class="eco-link"><strong>DevToolkit</strong><span>14+ Free Developer Tools</span></a>
+<a href="https://christian140903-sudo.github.io/template-forge/" class="eco-link" target="_blank"><strong>TemplateForge</strong><span>Premium Website Templates</span></a>
+<a href="https://christian140903-sudo.github.io/prompt-vault/" class="eco-link" target="_blank"><strong>PromptVault</strong><span>AI Prompt Collections</span></a>
+<a href="https://nextool.app" class="eco-link" target="_blank"><strong>NexTool</strong><span>AI Automation Studio</span></a>
+</div>
+</div>
+
+<footer>
+<p>GradientForge &mdash; Part of <a href="../">DevToolkit</a> by <a href="https://nextool.app" target="_blank">NexTool</a></p>
+<p style="margin-top:.5rem">100% free. No data sent to any server. Everything runs in your browser.</p>
+</footer>
+</div>
+
+<script>
+var stops = [
+  {color:'#6366f1',pos:0},
+  {color:'#a855f7',pos:50},
+  {color:'#ec4899',pos:100}
+];
+
+var presets = [
+  {name:'Sunset',stops:[{color:'#f97316',pos:0},{color:'#ec4899',pos:50},{color:'#8b5cf6',pos:100}],type:'linear',angle:135},
+  {name:'Ocean',stops:[{color:'#0ea5e9',pos:0},{color:'#6366f1',pos:100}],type:'linear',angle:135},
+  {name:'Forest',stops:[{color:'#22c55e',pos:0},{color:'#14b8a6',pos:50},{color:'#0ea5e9',pos:100}],type:'linear',angle:135},
+  {name:'Fire',stops:[{color:'#ef4444',pos:0},{color:'#f97316',pos:50},{color:'#eab308',pos:100}],type:'linear',angle:135},
+  {name:'Aurora',stops:[{color:'#06b6d4',pos:0},{color:'#8b5cf6',pos:33},{color:'#ec4899',pos:66},{color:'#f43f5e',pos:100}],type:'linear',angle:135},
+  {name:'Midnight',stops:[{color:'#1e1b4b',pos:0},{color:'#312e81',pos:50},{color:'#4338ca',pos:100}],type:'linear',angle:180},
+  {name:'Peach',stops:[{color:'#fde68a',pos:0},{color:'#fca5a5',pos:50},{color:'#c084fc',pos:100}],type:'linear',angle:135},
+  {name:'Neon',stops:[{color:'#00ff87',pos:0},{color:'#60efff',pos:100}],type:'linear',angle:135},
+  {name:'Royal',stops:[{color:'#7c3aed',pos:0},{color:'#2563eb',pos:100}],type:'linear',angle:135},
+  {name:'Rose',stops:[{color:'#fb7185',pos:0},{color:'#e879f9',pos:100}],type:'radial',angle:0},
+  {name:'Cosmic',stops:[{color:'#0f172a',pos:0},{color:'#581c87',pos:50},{color:'#be185d',pos:100}],type:'radial',angle:0},
+  {name:'Lime',stops:[{color:'#84cc16',pos:0},{color:'#22d3ee',pos:100}],type:'linear',angle:90}
+];
+
+var preview = document.getElementById('preview');
+var cssOutput = document.getElementById('cssOutput');
+var stopsList = document.getElementById('stopsList');
+var gradientType = document.getElementById('gradientType');
+var angleInput = document.getElementById('angleInput');
+var radialShape = document.getElementById('radialShape');
+var angleGroup = document.getElementById('angleGroup');
+var shapeGroup = document.getElementById('shapeGroup');
+var statusEl = document.getElementById('status');
+
+function buildGradientCSS() {
+  var type = gradientType.value;
+  var sorted = stops.slice().sort(function(a,b){return a.pos-b.pos});
+  var colorStr = sorted.map(function(s){return s.color+' '+s.pos+'%'}).join(', ');
+  if (type === 'linear') {
+    return 'linear-gradient('+angleInput.value+'deg, '+colorStr+')';
+  } else {
+    return 'radial-gradient('+radialShape.value+' at center, '+colorStr+')';
+  }
+}
+
+function updatePreview() {
+  var css = buildGradientCSS();
+  preview.style.background = css;
+  cssOutput.value = 'background: '+css+';';
+}
+
+function renderStops() {
+  stopsList.innerHTML = '';
+  stops.forEach(function(stop, i) {
+    var row = document.createElement('div');
+    row.className = 'stop-row';
+    row.setAttribute('role','listitem');
+    row.innerHTML =
+      '<input type="color" value="'+stop.color+'" data-i="'+i+'" aria-label="Color stop '+(i+1)+' color">' +
+      '<input type="range" min="0" max="100" value="'+stop.pos+'" data-i="'+i+'" aria-label="Color stop '+(i+1)+' position">' +
+      '<span class="stop-pos">'+stop.pos+'%</span>' +
+      (stops.length > 2 ? '<button class="remove-stop" data-i="'+i+'" aria-label="Remove color stop '+(i+1)+'" title="Remove">&times;</button>' : '');
+    stopsList.appendChild(row);
+  });
+  // Bind events
+  stopsList.querySelectorAll('input[type="color"]').forEach(function(el) {
+    el.addEventListener('input', function() {
+      stops[parseInt(this.dataset.i)].color = this.value;
+      updatePreview();
+    });
+  });
+  stopsList.querySelectorAll('input[type="range"]').forEach(function(el) {
+    el.addEventListener('input', function() {
+      var idx = parseInt(this.dataset.i);
+      stops[idx].pos = parseInt(this.value);
+      this.nextElementSibling.textContent = this.value+'%';
+      updatePreview();
+    });
+  });
+  stopsList.querySelectorAll('.remove-stop').forEach(function(el) {
+    el.addEventListener('click', function() {
+      stops.splice(parseInt(this.dataset.i), 1);
+      renderStops();
+      updatePreview();
+    });
+  });
+}
+
+function addStop() {
+  var hue = Math.floor(Math.random()*360);
+  var pos = Math.floor(Math.random()*100);
+  stops.push({color:hslToHex(hue,80,60),pos:pos});
+  renderStops();
+  updatePreview();
+}
+
+function hslToHex(h,s,l) {
+  s /= 100; l /= 100;
+  var c = (1-Math.abs(2*l-1))*s;
+  var x = c*(1-Math.abs((h/60)%2-1));
+  var m = l-c/2;
+  var r=0,g=0,b=0;
+  if(h<60){r=c;g=x}else if(h<120){r=x;g=c}else if(h<180){g=c;b=x}else if(h<240){g=x;b=c}else if(h<300){r=x;b=c}else{r=c;b=x}
+  r=Math.round((r+m)*255);g=Math.round((g+m)*255);b=Math.round((b+m)*255);
+  return '#'+((1<<24)+(r<<16)+(g<<8)+b).toString(16).slice(1);
+}
+
+function copyCSS() {
+  var text = cssOutput.value;
+  if (!text) { showStatus('Nothing to copy','error'); return; }
+  navigator.clipboard.writeText(text).then(function() {
+    showStatus('Copied to clipboard!','success');
+  });
+}
+
+function toggleFullscreen() {
+  preview.classList.toggle('fullscreen');
+  document.body.style.overflow = preview.classList.contains('fullscreen') ? 'hidden' : '';
+}
+
+document.getElementById('fullscreenClose').addEventListener('click', function() {
+  preview.classList.remove('fullscreen');
+  document.body.style.overflow = '';
+});
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape' && preview.classList.contains('fullscreen')) {
+    preview.classList.remove('fullscreen');
+    document.body.style.overflow = '';
+  }
+});
+
+function randomGradient() {
+  var count = 2 + Math.floor(Math.random()*2);
+  stops = [];
+  for (var i = 0; i < count; i++) {
+    stops.push({color:hslToHex(Math.floor(Math.random()*360),70+Math.floor(Math.random()*30),50+Math.floor(Math.random()*20)),pos:Math.round(i/(count-1)*100)});
+  }
+  angleInput.value = Math.floor(Math.random()*360);
+  renderStops();
+  updatePreview();
+}
+
+function applyPreset(preset) {
+  stops = preset.stops.map(function(s){return {color:s.color,pos:s.pos}});
+  gradientType.value = preset.type;
+  if (preset.type === 'linear') {
+    angleInput.value = preset.angle;
+    angleGroup.style.display = '';
+    shapeGroup.style.display = 'none';
+  } else {
+    angleGroup.style.display = 'none';
+    shapeGroup.style.display = '';
+  }
+  renderStops();
+  updatePreview();
+}
+
+function showStatus(msg, type) {
+  statusEl.textContent = msg;
+  statusEl.className = 'status '+type;
+  clearTimeout(statusEl._t);
+  statusEl._t = setTimeout(function(){statusEl.style.display='none';statusEl.className='status'},2500);
+}
+
+// Render presets
+var presetsGrid = document.getElementById('presetsGrid');
+presets.forEach(function(p, i) {
+  var sorted = p.stops.slice().sort(function(a,b){return a.pos-b.pos});
+  var colorStr = sorted.map(function(s){return s.color+' '+s.pos+'%'}).join(', ');
+  var bg = p.type === 'linear' ? 'linear-gradient('+p.angle+'deg, '+colorStr+')' : 'radial-gradient(circle at center, '+colorStr+')';
+  var el = document.createElement('div');
+  el.className = 'preset-swatch';
+  el.setAttribute('role','listitem');
+  el.setAttribute('tabindex','0');
+  el.setAttribute('aria-label','Preset gradient: '+p.name);
+  el.style.background = bg;
+  el.innerHTML = '<span class="preset-name">'+p.name+'</span>';
+  el.addEventListener('click', function(){applyPreset(p)});
+  el.addEventListener('keydown', function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();applyPreset(p)}});
+  presetsGrid.appendChild(el);
+});
+
+gradientType.addEventListener('change', function() {
+  if (this.value === 'linear') {
+    angleGroup.style.display = '';
+    shapeGroup.style.display = 'none';
+  } else {
+    angleGroup.style.display = 'none';
+    shapeGroup.style.display = '';
+  }
+  updatePreview();
+});
+
+angleInput.addEventListener('input', updatePreview);
+radialShape.addEventListener('change', updatePreview);
+
+renderStops();
+updatePreview();
+</script>
+</body>
+</html>

@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Unix Timestamp Converter Online | TimestampTool</title>
+<meta name="description" content="Free online Unix timestamp converter. Convert timestamps to human-readable dates and vice versa. Live clock, multiple formats, timezone support. No signup, no ads.">
+<meta name="keywords" content="unix timestamp converter, epoch converter, timestamp to date, date to timestamp, unix time, epoch time, timestamp tool, time converter online, utc converter, timezone converter">
+<meta name="robots" content="index, follow">
+<meta name="author" content="TimestampTool">
+<link rel="canonical" href="https://christian140903-sudo.github.io/devtoolkit/timestamp/">
+<meta property="og:title" content="Free Unix Timestamp Converter Online | TimestampTool">
+<meta property="og:description" content="Convert Unix timestamps to dates and dates to timestamps. Live clock, multiple formats, timezone support. 100% free.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://christian140903-sudo.github.io/devtoolkit/timestamp/">
+<meta property="og:site_name" content="DevToolkit">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free Unix Timestamp Converter Online">
+<meta name="twitter:description" content="Convert Unix timestamps to dates and dates to timestamps. Free, no signup required.">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"TimestampTool","url":"https://christian140903-sudo.github.io/devtoolkit/timestamp/","description":"Free online Unix timestamp converter with timezone support","applicationCategory":"DeveloperApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#050508;--surface:#0d0d14;--surface2:#14141f;--border:#1e1e2e;--primary:#6366f1;--primary-glow:rgba(99,102,241,.15);--accent:#a855f7;--text:#e2e8f0;--text-muted:#94a3b8;--success:#22c55e;--error:#ef4444;--radius:16px;--font:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif}
+body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;line-height:1.6}
+a{color:var(--primary);text-decoration:none}
+a:hover{text-decoration:underline}
+.container{max-width:900px;margin:0 auto;padding:2rem 1.5rem}
+header{text-align:center;padding:3rem 0 2rem}
+header h1{font-size:clamp(1.8rem,4vw,2.5rem);font-weight:800;letter-spacing:-.5px;background:linear-gradient(135deg,var(--primary),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+header p{color:var(--text-muted);margin-top:.5rem;font-size:1.05rem}
+.back-link{display:inline-flex;align-items:center;gap:.5rem;color:var(--text-muted);font-size:.9rem;margin-bottom:1rem;transition:color .2s}
+.back-link:hover{color:var(--primary);text-decoration:none}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;margin-bottom:1.5rem}
+label{display:block;font-size:.85rem;font-weight:600;color:var(--text-muted);margin-bottom:.5rem;text-transform:uppercase;letter-spacing:.5px}
+input[type="text"],input[type="number"],input[type="datetime-local"],select{width:100%;padding:.7rem 1rem;background:var(--surface2);border:1px solid var(--border);border-radius:12px;color:var(--text);font-family:var(--font);font-size:.9rem;outline:none;transition:border-color .2s}
+input:focus,select:focus{border-color:var(--primary);box-shadow:0 0 0 3px var(--primary-glow)}
+.btn{padding:.65rem 1.25rem;border:none;border-radius:10px;font-size:.9rem;font-weight:600;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:.5rem}
+.btn-primary{background:var(--primary);color:#fff}
+.btn-primary:hover{background:#4f46e5;transform:translateY(-1px);box-shadow:0 4px 15px var(--primary-glow)}
+.btn-secondary{background:var(--surface2);color:var(--text);border:1px solid var(--border)}
+.btn-secondary:hover{border-color:var(--primary);color:var(--primary)}
+.actions{display:flex;gap:.75rem;margin:1rem 0;flex-wrap:wrap}
+.status{padding:.5rem 1rem;border-radius:8px;font-size:.85rem;font-weight:500;margin-top:.75rem;display:none}
+.status.success{display:block;background:rgba(34,197,94,.1);color:var(--success);border:1px solid rgba(34,197,94,.2)}
+
+/* Live clock */
+.live-clock{text-align:center;padding:1.5rem;margin-bottom:0}
+.live-clock .timestamp{font-size:clamp(1.8rem,5vw,2.8rem);font-weight:800;font-variant-numeric:tabular-nums;color:var(--primary);letter-spacing:1px;cursor:pointer;transition:color .2s}
+.live-clock .timestamp:hover{color:var(--accent)}
+.live-clock .sub{color:var(--text-muted);font-size:.85rem;margin-top:.25rem}
+
+/* Mode toggle */
+.mode-toggle{display:flex;gap:.5rem;margin-bottom:1.5rem}
+.mode-btn{flex:1;padding:.75rem;border:1px solid var(--border);border-radius:12px;background:var(--surface2);color:var(--text-muted);font-size:.95rem;font-weight:600;cursor:pointer;transition:all .2s}
+.mode-btn.active{background:var(--primary);color:#fff;border-color:var(--primary);box-shadow:0 0 20px var(--primary-glow)}
+.mode-btn:hover:not(.active){border-color:var(--primary);color:var(--text)}
+
+/* Unit toggle */
+.unit-toggle{display:flex;gap:.5rem;margin-bottom:1rem}
+.unit-btn{padding:.4rem .9rem;border:1px solid var(--border);border-radius:8px;background:var(--surface2);color:var(--text-muted);font-size:.8rem;font-weight:600;cursor:pointer;transition:all .2s}
+.unit-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+
+/* Results */
+.results{display:flex;flex-direction:column;gap:.75rem;margin-top:1rem}
+.result-row{display:flex;justify-content:space-between;align-items:center;padding:.7rem 1rem;background:var(--surface2);border-radius:10px;border:1px solid var(--border);gap:1rem}
+.result-row .label{font-size:.8rem;color:var(--text-muted);text-transform:uppercase;font-weight:600;letter-spacing:.3px;min-width:100px;flex-shrink:0}
+.result-row .value{font-family:'SF Mono',Monaco,Consolas,monospace;font-size:.85rem;color:var(--text);word-break:break-all;flex:1}
+.result-row .copy-btn{background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:.85rem;padding:.2rem .5rem;border-radius:6px;transition:all .2s;flex-shrink:0}
+.result-row .copy-btn:hover{color:var(--primary);background:var(--primary-glow)}
+
+/* Reference */
+.ref-grid{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}
+.ref-item{display:flex;justify-content:space-between;align-items:center;padding:.5rem .8rem;background:var(--surface2);border-radius:8px;font-size:.8rem;cursor:pointer;transition:all .2s;border:1px solid transparent}
+.ref-item:hover{border-color:var(--primary);background:rgba(99,102,241,.05)}
+.ref-item .ref-name{color:var(--text-muted)}
+.ref-item .ref-val{color:var(--text);font-family:'SF Mono',Monaco,Consolas,monospace;font-weight:600}
+
+.info-section{margin-top:2rem}
+.info-section h2{font-size:1.2rem;font-weight:700;margin-bottom:1rem}
+.info-section p{color:var(--text-muted);font-size:.95rem;margin-bottom:.75rem}
+.info-section code{background:var(--surface2);padding:.15rem .4rem;border-radius:4px;font-size:.85rem;color:var(--primary)}
+footer{text-align:center;padding:2rem 0;color:var(--text-muted);font-size:.85rem;border-top:1px solid var(--border);margin-top:3rem}
+.ecosystem{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-top:2rem}
+.eco-link{display:block;padding:1rem;background:var(--surface);border:1px solid var(--border);border-radius:12px;transition:all .2s;text-decoration:none}
+.eco-link:hover{border-color:var(--primary);transform:translateY(-2px);text-decoration:none}
+.eco-link strong{display:block;color:var(--text);font-size:.95rem}
+.eco-link span{color:var(--text-muted);font-size:.8rem}
+@media(max-width:600px){.container{padding:1rem}.mode-toggle{flex-direction:column}.actions{flex-direction:column}.btn{justify-content:center}.ref-grid{grid-template-columns:1fr}.result-row{flex-direction:column;align-items:flex-start;gap:.3rem}}
+</style>
+</head>
+<body>
+<div class="container">
+<a href="../" class="back-link" aria-label="Back to DevToolkit">&larr; Back to DevToolkit</a>
+<header>
+<h1>Timestamp Converter</h1>
+<p>Convert Unix timestamps to dates and dates to timestamps. Live clock included.</p>
+</header>
+
+<div class="card live-clock">
+<div class="timestamp" id="liveClock" title="Click to copy" role="button" tabindex="0" aria-label="Current Unix timestamp, click to copy">-</div>
+<div class="sub">Current Unix Timestamp (click to copy)</div>
+<div class="sub" id="liveDate" style="margin-top:.25rem;color:var(--text)">-</div>
+</div>
+
+<div class="card">
+<div class="mode-toggle" role="tablist" aria-label="Conversion mode">
+<button class="mode-btn active" id="tsToDateMode" onclick="setMode('ts')" role="tab" aria-selected="true">Timestamp &rarr; Date</button>
+<button class="mode-btn" id="dateToTsMode" onclick="setMode('date')" role="tab" aria-selected="false">Date &rarr; Timestamp</button>
+</div>
+
+<div id="tsPanel">
+<div class="unit-toggle" role="group" aria-label="Timestamp unit">
+<button class="unit-btn active" id="secBtn" onclick="setUnit('s')">Seconds</button>
+<button class="unit-btn" id="msBtn" onclick="setUnit('ms')">Milliseconds</button>
+</div>
+<label for="tsInput">Unix Timestamp</label>
+<input type="text" id="tsInput" placeholder="e.g. 1738972800" inputmode="numeric" aria-label="Enter Unix timestamp">
+</div>
+
+<div id="datePanel" style="display:none">
+<label for="dateInput">Date & Time</label>
+<input type="datetime-local" id="dateInput" aria-label="Select date and time" step="1">
+</div>
+
+<div style="margin-top:1rem">
+<label for="tzSelect">Timezone</label>
+<select id="tzSelect" aria-label="Select timezone"></select>
+</div>
+
+<div class="actions">
+<button class="btn btn-primary" onclick="convert()" aria-label="Convert">Convert</button>
+<button class="btn btn-secondary" onclick="useNow()" aria-label="Use current time">Now</button>
+<button class="btn btn-secondary" onclick="clearAll()" aria-label="Clear all fields">Clear</button>
+</div>
+
+<div class="results" id="results" style="display:none" aria-live="polite"></div>
+<div class="status" id="status"></div>
+</div>
+
+<div class="card">
+<label>Common Timestamps Reference</label>
+<div class="ref-grid" id="refGrid" role="list" aria-label="Common timestamp references"></div>
+</div>
+
+<div class="info-section card">
+<h2>What is a Unix Timestamp?</h2>
+<p>A Unix timestamp (also known as Epoch time or POSIX time) is the number of seconds that have elapsed since January 1, 1970 00:00:00 UTC (the Unix Epoch). It is a widely used standard for tracking time in computing.</p>
+<p>Timestamps are timezone-independent: the value <code>0</code> always means midnight on January 1, 1970 UTC regardless of your local timezone. This makes them ideal for storing and comparing times across systems.</p>
+<p>Some systems use millisecond timestamps (13 digits) while others use second timestamps (10 digits). JavaScript's <code>Date.now()</code> returns milliseconds, while many server-side languages use seconds.</p>
+</div>
+
+<div class="info-section">
+<h2>More from NexTool</h2>
+<div class="ecosystem">
+<a href="../" class="eco-link"><strong>DevToolkit</strong><span>14+ Free Developer Tools</span></a>
+<a href="https://christian140903-sudo.github.io/template-forge/" class="eco-link" target="_blank"><strong>TemplateForge</strong><span>Premium Website Templates</span></a>
+<a href="https://christian140903-sudo.github.io/prompt-vault/" class="eco-link" target="_blank"><strong>PromptVault</strong><span>AI Prompt Collections</span></a>
+<a href="https://nextool.app" class="eco-link" target="_blank"><strong>NexTool</strong><span>AI Automation Studio</span></a>
+</div>
+</div>
+
+<footer>
+<p>TimestampTool &mdash; Part of <a href="../">DevToolkit</a> by <a href="https://nextool.app" target="_blank">NexTool</a></p>
+<p style="margin-top:.5rem">100% free. No data sent to any server. Everything runs in your browser.</p>
+</footer>
+</div>
+
+<script>
+var mode = 'ts';
+var unit = 's';
+var tzSelect = document.getElementById('tzSelect');
+var tsInput = document.getElementById('tsInput');
+var dateInput = document.getElementById('dateInput');
+var resultsEl = document.getElementById('results');
+var statusEl = document.getElementById('status');
+
+// Populate timezones
+var commonTz = [
+  'UTC','America/New_York','America/Chicago','America/Denver','America/Los_Angeles',
+  'Europe/London','Europe/Berlin','Europe/Paris','Europe/Vienna','Europe/Moscow',
+  'Asia/Tokyo','Asia/Shanghai','Asia/Kolkata','Asia/Dubai',
+  'Australia/Sydney','Pacific/Auckland','America/Sao_Paulo','Africa/Cairo'
+];
+try {
+  var all = Intl.supportedValuesOf('timeZone');
+  commonTz.forEach(function(tz) {
+    var opt = document.createElement('option');
+    opt.value = tz; opt.textContent = tz.replace(/_/g,' ');
+    if (tz === Intl.DateTimeFormat().resolvedOptions().timeZone) opt.selected = true;
+    tzSelect.appendChild(opt);
+  });
+  var sep = document.createElement('option');
+  sep.disabled = true; sep.textContent = '--- All Timezones ---';
+  tzSelect.appendChild(sep);
+  all.forEach(function(tz) {
+    if (commonTz.indexOf(tz) === -1) {
+      var opt = document.createElement('option');
+      opt.value = tz; opt.textContent = tz.replace(/_/g,' ');
+      tzSelect.appendChild(opt);
+    }
+  });
+} catch(e) {
+  commonTz.forEach(function(tz) {
+    var opt = document.createElement('option');
+    opt.value = tz; opt.textContent = tz.replace(/_/g,' ');
+    if (tz === 'UTC') opt.selected = true;
+    tzSelect.appendChild(opt);
+  });
+}
+
+function setMode(m) {
+  mode = m;
+  document.getElementById('tsToDateMode').classList.toggle('active', m==='ts');
+  document.getElementById('dateToTsMode').classList.toggle('active', m==='date');
+  document.getElementById('tsToDateMode').setAttribute('aria-selected', m==='ts');
+  document.getElementById('dateToTsMode').setAttribute('aria-selected', m==='date');
+  document.getElementById('tsPanel').style.display = m==='ts'?'':'none';
+  document.getElementById('datePanel').style.display = m==='date'?'':'none';
+  resultsEl.style.display = 'none';
+}
+
+function setUnit(u) {
+  unit = u;
+  document.getElementById('secBtn').classList.toggle('active', u==='s');
+  document.getElementById('msBtn').classList.toggle('active', u==='ms');
+}
+
+function useNow() {
+  if (mode === 'ts') {
+    tsInput.value = unit === 's' ? Math.floor(Date.now()/1000) : Date.now();
+  } else {
+    var now = new Date();
+    var local = new Date(now.getTime() - now.getTimezoneOffset()*60000);
+    dateInput.value = local.toISOString().slice(0,19);
+  }
+  convert();
+}
+
+function clearAll() {
+  tsInput.value = '';
+  dateInput.value = '';
+  resultsEl.style.display = 'none';
+  statusEl.className = 'status';
+}
+
+function relativeTime(date) {
+  var now = new Date();
+  var diff = now - date;
+  var abs = Math.abs(diff);
+  var future = diff < 0;
+  var prefix = future ? 'in ' : '';
+  var suffix = future ? '' : ' ago';
+  if (abs < 60000) return prefix + Math.floor(abs/1000) + ' seconds' + suffix;
+  if (abs < 3600000) return prefix + Math.floor(abs/60000) + ' minutes' + suffix;
+  if (abs < 86400000) return prefix + Math.floor(abs/3600000) + ' hours' + suffix;
+  if (abs < 2592000000) return prefix + Math.floor(abs/86400000) + ' days' + suffix;
+  if (abs < 31536000000) return prefix + Math.floor(abs/2592000000) + ' months' + suffix;
+  return prefix + Math.floor(abs/31536000000) + ' years' + suffix;
+}
+
+function convert() {
+  var date;
+  if (mode === 'ts') {
+    var val = tsInput.value.trim();
+    if (!val) { showStatus('Please enter a timestamp','error'); return; }
+    var num = parseInt(val, 10);
+    if (isNaN(num)) { showStatus('Invalid timestamp','error'); return; }
+    var ms = unit === 's' ? num * 1000 : num;
+    date = new Date(ms);
+  } else {
+    if (!dateInput.value) { showStatus('Please select a date','error'); return; }
+    date = new Date(dateInput.value);
+  }
+
+  if (isNaN(date.getTime())) { showStatus('Invalid date','error'); return; }
+
+  var tz = tzSelect.value;
+  var tsSec = Math.floor(date.getTime() / 1000);
+  var tsMs = date.getTime();
+
+  var formats = [
+    {label:'Unix (seconds)', value: tsSec.toString()},
+    {label:'Unix (ms)', value: tsMs.toString()},
+    {label:'ISO 8601', value: date.toISOString()},
+    {label:'RFC 2822', value: date.toUTCString()},
+    {label:'Local Time', value: date.toLocaleString('en-US', {timeZone:tz, dateStyle:'full', timeStyle:'long'})},
+    {label:'Date Only', value: date.toLocaleDateString('en-US', {timeZone:tz, year:'numeric', month:'long', day:'numeric'})},
+    {label:'Time Only', value: date.toLocaleTimeString('en-US', {timeZone:tz, hour:'2-digit', minute:'2-digit', second:'2-digit', hour12:true})},
+    {label:'Relative', value: relativeTime(date)},
+    {label:'Day of Week', value: date.toLocaleDateString('en-US', {timeZone:tz, weekday:'long'})},
+    {label:'Day of Year', value: dayOfYear(date).toString()}
+  ];
+
+  resultsEl.innerHTML = '';
+  formats.forEach(function(f) {
+    var row = document.createElement('div');
+    row.className = 'result-row';
+    row.innerHTML = '<span class="label">'+f.label+'</span><span class="value">'+escHtml(f.value)+'</span><button class="copy-btn" aria-label="Copy '+f.label+'" title="Copy">Copy</button>';
+    row.querySelector('.copy-btn').addEventListener('click', function() {
+      navigator.clipboard.writeText(f.value).then(function(){showStatus('Copied: '+f.label,'success')});
+    });
+    resultsEl.appendChild(row);
+  });
+  resultsEl.style.display = '';
+  statusEl.className = 'status';
+}
+
+function dayOfYear(d) {
+  var start = new Date(d.getFullYear(), 0, 0);
+  var diff = d - start;
+  return Math.floor(diff / 86400000);
+}
+
+function escHtml(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function showStatus(msg, type) {
+  statusEl.textContent = msg;
+  statusEl.className = 'status '+type;
+  clearTimeout(statusEl._t);
+  statusEl._t = setTimeout(function(){statusEl.className='status'},3000);
+}
+
+// Live clock
+function updateLiveClock() {
+  var now = Math.floor(Date.now()/1000);
+  document.getElementById('liveClock').textContent = now;
+  document.getElementById('liveDate').textContent = new Date().toLocaleString('en-US',{dateStyle:'full',timeStyle:'medium'});
+}
+updateLiveClock();
+setInterval(updateLiveClock, 1000);
+
+document.getElementById('liveClock').addEventListener('click', function() {
+  navigator.clipboard.writeText(this.textContent).then(function(){showStatus('Timestamp copied!','success')});
+});
+document.getElementById('liveClock').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter' || e.key === ' ') {
+    e.preventDefault();
+    navigator.clipboard.writeText(this.textContent).then(function(){showStatus('Timestamp copied!','success')});
+  }
+});
+
+// Reference timestamps
+var refs = [
+  {name:'Unix Epoch',val:'0'},
+  {name:'Y2K',val:'946684800'},
+  {name:'Max 32-bit',val:'2147483647'},
+  {name:'iPhone Launch',val:'1183248000'},
+  {name:'Bitcoin Genesis',val:'1231006505'},
+  {name:'Year 2030',val:'1893456000'},
+  {name:'Year 2050',val:'2524608000'},
+  {name:'Year 2000',val:'946684800'}
+];
+var refGrid = document.getElementById('refGrid');
+refs.forEach(function(r) {
+  var el = document.createElement('div');
+  el.className = 'ref-item';
+  el.setAttribute('role','listitem');
+  el.setAttribute('tabindex','0');
+  el.setAttribute('aria-label', r.name+': '+r.val);
+  el.innerHTML = '<span class="ref-name">'+r.name+'</span><span class="ref-val">'+r.val+'</span>';
+  el.addEventListener('click', function() {
+    setMode('ts');
+    setUnit('s');
+    tsInput.value = r.val;
+    convert();
+  });
+  el.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      setMode('ts');
+      setUnit('s');
+      tsInput.value = r.val;
+      convert();
+    }
+  });
+  refGrid.appendChild(el);
+});
+
+// Auto-convert on input
+tsInput.addEventListener('input', function() {
+  if (this.value.trim()) convert();
+});
+dateInput.addEventListener('input', function() {
+  if (this.value) convert();
+});
+tzSelect.addEventListener('change', function() {
+  if (resultsEl.style.display !== 'none') convert();
+});
+</script>
+</body>
+</html>
