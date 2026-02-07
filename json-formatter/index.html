@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free JSON Formatter & Validator Online | JSONFlow</title>
+<meta name="description" content="Free online JSON formatter, validator, and beautifier. Format, minify, validate JSON with syntax highlighting, tree view, and search. Fast, secure, no signup required.">
+<meta name="keywords" content="json formatter online, json validator, json beautifier, json minify, json viewer, json tree view, json formatter free, format json online, validate json online">
+<meta name="robots" content="index, follow">
+<meta name="author" content="JSONFlow">
+<link rel="canonical" href="https://christian140903-sudo.github.io/json-formatter/">
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PLACEHOLDER"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-PLACEHOLDER');
+</script>
+
+<!-- Open Graph -->
+<meta property="og:title" content="Free JSON Formatter & Validator Online | JSONFlow">
+<meta property="og:description" content="Format, validate, beautify and minify JSON instantly. Tree view, syntax highlighting, search and more. 100% free.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://christian140903-sudo.github.io/json-formatter/">
+<meta property="og:image" content="https://christian140903-sudo.github.io/json-formatter/og-image.png">
+<meta property="og:site_name" content="DevToolkit">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free JSON Formatter & Validator Online | JSONFlow">
+<meta name="twitter:description" content="Format, validate, beautify and minify JSON instantly. Free online tool with tree view and syntax highlighting.">
+<meta name="twitter:image" content="https://christian140903-sudo.github.io/json-formatter/og-image.png">
+
+<!-- Schema.org -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "JSONFlow - Free JSON Formatter & Validator",
+  "url": "https://christian140903-sudo.github.io/json-formatter/",
+  "description": "Free online JSON formatter, validator, beautifier, and minifier with tree view, syntax highlighting, and search.",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "featureList": ["JSON Formatting", "JSON Validation", "JSON Minification", "Tree View", "Syntax Highlighting", "Search", "Dark/Light Theme"]
+}
+</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--font-mono:'SF Mono','Cascadia Code','Fira Code','JetBrains Mono','Consolas',monospace;--font-ui:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;--radius:8px;--radius-sm:4px;--transition:0.2s ease}
+[data-theme="dark"]{
+  --bg-primary:#1e1e2e;--bg-secondary:#181825;--bg-tertiary:#11111b;--bg-surface:#313244;
+  --bg-hover:#45475a;--bg-active:#585b70;--border:#45475a;--border-subtle:#313244;
+  --text-primary:#cdd6f4;--text-secondary:#a6adc8;--text-muted:#6c7086;
+  --accent:#89b4fa;--accent-hover:#74c7ec;--accent-bg:rgba(137,180,250,0.1);
+  --success:#a6e3a1;--error:#f38ba8;--warning:#fab387;--info:#89dceb;
+  --json-key:#89b4fa;--json-string:#a6e3a1;--json-number:#fab387;
+  --json-bool:#cba6f7;--json-null:#f38ba8;--json-bracket:#cdd6f4;
+  --scrollbar-track:#181825;--scrollbar-thumb:#45475a;
+  --premium-gradient:linear-gradient(135deg,#cba6f7,#f38ba8,#fab387);
+  --shadow:0 4px 24px rgba(0,0,0,0.4)
+}
+[data-theme="light"]{
+  --bg-primary:#eff1f5;--bg-secondary:#e6e9ef;--bg-tertiary:#dce0e8;--bg-surface:#ccd0da;
+  --bg-hover:#bcc0cc;--bg-active:#acb0be;--border:#bcc0cc;--border-subtle:#ccd0da;
+  --text-primary:#4c4f69;--text-secondary:#5c5f77;--text-muted:#8c8fa1;
+  --accent:#1e66f5;--accent-hover:#2a6ef5;--accent-bg:rgba(30,102,245,0.1);
+  --success:#40a02b;--error:#d20f39;--warning:#df8e1d;--info:#04a5e5;
+  --json-key:#1e66f5;--json-string:#40a02b;--json-number:#df8e1d;
+  --json-bool:#8839ef;--json-null:#d20f39;--json-bracket:#4c4f69;
+  --scrollbar-track:#e6e9ef;--scrollbar-thumb:#bcc0cc;
+  --premium-gradient:linear-gradient(135deg,#8839ef,#d20f39,#df8e1d);
+  --shadow:0 4px 24px rgba(0,0,0,0.1)
+}
+::-webkit-scrollbar{width:8px;height:8px}
+::-webkit-scrollbar-track{background:var(--scrollbar-track)}
+::-webkit-scrollbar-thumb{background:var(--scrollbar-thumb);border-radius:4px}
+::-webkit-scrollbar-thumb:hover{background:var(--bg-active)}
+
+html,body{height:100%;overflow:hidden}
+body{font-family:var(--font-ui);background:var(--bg-primary);color:var(--text-primary);display:flex;flex-direction:column;transition:background var(--transition),color var(--transition)}
+
+/* Header */
+.header{display:flex;align-items:center;justify-content:space-between;padding:10px 20px;background:var(--bg-secondary);border-bottom:1px solid var(--border-subtle);flex-shrink:0;z-index:100}
+.logo{display:flex;align-items:center;gap:10px;font-size:20px;font-weight:700;letter-spacing:-0.5px}
+.logo-icon{width:32px;height:32px;background:var(--premium-gradient);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:14px}
+.header-actions{display:flex;align-items:center;gap:8px}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border:1px solid var(--border);background:var(--bg-surface);color:var(--text-primary);border-radius:var(--radius-sm);cursor:pointer;font-size:13px;font-family:var(--font-ui);transition:all var(--transition);white-space:nowrap;user-select:none}
+.btn:hover{background:var(--bg-hover);border-color:var(--bg-active)}
+.btn-primary{background:var(--accent);color:#1e1e2e;border-color:var(--accent);font-weight:600}
+.btn-primary:hover{background:var(--accent-hover);border-color:var(--accent-hover)}
+.btn-sm{padding:4px 10px;font-size:12px}
+.btn-icon{padding:7px;width:34px;height:34px;justify-content:center}
+.btn-premium{background:var(--premium-gradient);color:#fff;border:none;font-weight:600;position:relative;overflow:hidden}
+.btn-premium:hover{opacity:0.9;transform:translateY(-1px)}
+
+/* Theme Toggle */
+.theme-toggle{position:relative;width:50px;height:26px;background:var(--bg-surface);border-radius:13px;border:1px solid var(--border);cursor:pointer;transition:all var(--transition)}
+.theme-toggle::after{content:'';position:absolute;top:3px;left:3px;width:18px;height:18px;background:var(--accent);border-radius:50%;transition:transform var(--transition)}
+[data-theme="light"] .theme-toggle::after{transform:translateX(24px)}
+.theme-icons{position:absolute;top:50%;transform:translateY(-50%);display:flex;justify-content:space-between;width:100%;padding:0 5px;font-size:12px;pointer-events:none}
+
+/* Toolbar */
+.toolbar{display:flex;align-items:center;gap:6px;padding:8px 16px;background:var(--bg-secondary);border-bottom:1px solid var(--border-subtle);flex-wrap:wrap;flex-shrink:0}
+.toolbar-group{display:flex;align-items:center;gap:4px}
+.toolbar-divider{width:1px;height:24px;background:var(--border);margin:0 6px}
+.indent-select{background:var(--bg-surface);color:var(--text-primary);border:1px solid var(--border);border-radius:var(--radius-sm);padding:5px 8px;font-size:12px;font-family:var(--font-ui);cursor:pointer}
+.indent-select:focus{outline:none;border-color:var(--accent)}
+
+/* Stats bar */
+.stats-bar{display:flex;align-items:center;gap:16px;padding:4px 16px;background:var(--bg-tertiary);border-bottom:1px solid var(--border-subtle);font-size:11px;color:var(--text-muted);flex-shrink:0}
+.stat{display:flex;align-items:center;gap:4px}
+.stat-value{color:var(--text-secondary);font-weight:600}
+.validation-status{display:flex;align-items:center;gap:5px;margin-left:auto;font-weight:600}
+.validation-status.valid{color:var(--success)}
+.validation-status.invalid{color:var(--error)}
+.validation-status.empty{color:var(--text-muted)}
+
+/* Main Layout */
+.main{display:flex;flex:1;overflow:hidden;position:relative}
+.pane{flex:1;display:flex;flex-direction:column;min-width:0;overflow:hidden}
+.pane-header{display:flex;align-items:center;justify-content:space-between;padding:8px 16px;background:var(--bg-secondary);border-bottom:1px solid var(--border-subtle);flex-shrink:0}
+.pane-title{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;color:var(--text-muted)}
+.pane-actions{display:flex;gap:4px}
+
+/* Resizer */
+.resizer{width:4px;cursor:col-resize;background:var(--border-subtle);transition:background var(--transition);flex-shrink:0;position:relative}
+.resizer:hover,.resizer.active{background:var(--accent)}
+.resizer::after{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:4px;height:40px;border-radius:2px}
+
+/* Editor */
+.editor-wrapper{flex:1;position:relative;overflow:hidden}
+.editor-container{display:flex;height:100%;overflow:auto}
+.line-numbers{padding:12px 0;background:var(--bg-tertiary);color:var(--text-muted);font-family:var(--font-mono);font-size:13px;line-height:1.6;text-align:right;user-select:none;min-width:48px;flex-shrink:0;border-right:1px solid var(--border-subtle)}
+.line-numbers div{padding:0 10px 0 10px}
+.editor-area{flex:1;display:flex;position:relative;overflow:hidden}
+textarea.code-input{width:100%;height:100%;resize:none;border:none;outline:none;background:transparent;color:var(--text-primary);font-family:var(--font-mono);font-size:13px;line-height:1.6;padding:12px 16px;tab-size:2;overflow:auto;white-space:pre;position:relative;z-index:1}
+textarea.code-input::placeholder{color:var(--text-muted)}
+
+/* Syntax-highlighted output */
+.output-area{flex:1;overflow:auto;position:relative}
+.syntax-output{font-family:var(--font-mono);font-size:13px;line-height:1.6;padding:12px 16px;white-space:pre;min-height:100%;color:var(--text-primary)}
+.syntax-output .jk{color:var(--json-key)}
+.syntax-output .js{color:var(--json-string)}
+.syntax-output .jn{color:var(--json-number)}
+.syntax-output .jb{color:var(--json-bool)}
+.syntax-output .jl{color:var(--json-null)}
+.syntax-output .jbr{color:var(--json-bracket)}
+.syntax-output .search-highlight{background:rgba(250,179,135,0.3);border-radius:2px;outline:1px solid var(--warning)}
+.syntax-output .search-active{background:rgba(250,179,135,0.6)}
+.output-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;color:var(--text-muted);gap:12px;padding:40px;text-align:center}
+.output-placeholder svg{opacity:0.3}
+
+/* Tree View */
+.tree-view{font-family:var(--font-mono);font-size:13px;line-height:1.8;padding:12px 16px;overflow:auto;height:100%}
+.tree-node{padding-left:20px;position:relative}
+.tree-node.root{padding-left:0}
+.tree-toggle{cursor:pointer;user-select:none;display:inline-flex;align-items:center;gap:4px;padding:1px 4px;border-radius:var(--radius-sm);transition:background var(--transition)}
+.tree-toggle:hover{background:var(--bg-hover)}
+.tree-arrow{display:inline-block;width:14px;text-align:center;font-size:10px;color:var(--text-muted);transition:transform 0.15s ease}
+.tree-arrow.collapsed{transform:rotate(-90deg)}
+.tree-key{color:var(--json-key)}
+.tree-string{color:var(--json-string)}
+.tree-number{color:var(--json-number)}
+.tree-bool{color:var(--json-bool)}
+.tree-null{color:var(--json-null)}
+.tree-bracket{color:var(--text-muted);font-size:11px}
+.tree-count{color:var(--text-muted);font-size:11px;margin-left:4px}
+.tree-children{overflow:hidden;transition:max-height 0.2s ease}
+.tree-children.collapsed{display:none}
+.tree-value-inline{margin-left:4px}
+
+/* View tabs */
+.view-tabs{display:flex;gap:0;border-bottom:1px solid var(--border-subtle);flex-shrink:0}
+.view-tab{padding:8px 16px;font-size:12px;font-weight:500;color:var(--text-muted);cursor:pointer;border-bottom:2px solid transparent;transition:all var(--transition);background:none;border-top:none;border-left:none;border-right:none;font-family:var(--font-ui)}
+.view-tab:hover{color:var(--text-primary);background:var(--bg-hover)}
+.view-tab.active{color:var(--accent);border-bottom-color:var(--accent)}
+
+/* Search bar */
+.search-bar{display:none;align-items:center;gap:8px;padding:6px 16px;background:var(--bg-secondary);border-bottom:1px solid var(--border-subtle)}
+.search-bar.visible{display:flex}
+.search-input{flex:1;background:var(--bg-surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:5px 10px;color:var(--text-primary);font-family:var(--font-mono);font-size:12px;outline:none}
+.search-input:focus{border-color:var(--accent)}
+.search-count{font-size:11px;color:var(--text-muted);min-width:60px;text-align:center}
+.search-nav{display:flex;gap:2px}
+
+/* Error display */
+.error-display{background:rgba(243,139,168,0.1);border:1px solid var(--error);border-radius:var(--radius-sm);padding:10px 14px;margin:12px 16px;font-size:12px;color:var(--error);font-family:var(--font-mono);line-height:1.5}
+.error-display strong{display:block;margin-bottom:4px;font-size:13px}
+
+/* Drop zone */
+.drop-zone{position:absolute;inset:0;background:rgba(137,180,250,0.1);border:2px dashed var(--accent);z-index:50;display:none;align-items:center;justify-content:center;font-size:16px;color:var(--accent);font-weight:600;backdrop-filter:blur(4px)}
+.drop-zone.active{display:flex}
+
+/* Premium Modal */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:1000;display:none;align-items:center;justify-content:center;backdrop-filter:blur(4px)}
+.modal-overlay.visible{display:flex}
+.modal{background:var(--bg-secondary);border:1px solid var(--border);border-radius:12px;padding:32px;max-width:480px;width:90%;box-shadow:var(--shadow);position:relative}
+.modal-close{position:absolute;top:12px;right:12px;background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:20px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:var(--radius-sm);transition:all var(--transition)}
+.modal-close:hover{background:var(--bg-hover);color:var(--text-primary)}
+.modal-badge{display:inline-block;background:var(--premium-gradient);color:#fff;font-size:11px;font-weight:700;padding:3px 10px;border-radius:12px;margin-bottom:16px;letter-spacing:0.5px}
+.modal h2{font-size:22px;margin-bottom:8px;letter-spacing:-0.3px}
+.modal p{color:var(--text-secondary);font-size:14px;line-height:1.6;margin-bottom:24px}
+.pricing-cards{display:flex;flex-direction:column;gap:10px;margin-bottom:20px}
+.pricing-card{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;background:var(--bg-surface);border:1px solid var(--border);border-radius:var(--radius);cursor:pointer;transition:all var(--transition)}
+.pricing-card:hover{border-color:var(--accent);background:var(--accent-bg)}
+.pricing-card .feature-name{font-weight:600;font-size:14px}
+.pricing-card .feature-desc{font-size:12px;color:var(--text-muted);margin-top:2px}
+.pricing-card .price{font-weight:700;font-size:16px;color:var(--accent);white-space:nowrap}
+.pricing-card .price span{font-size:11px;color:var(--text-muted);font-weight:400}
+.modal-footer{text-align:center;color:var(--text-muted);font-size:11px}
+
+/* Toast */
+.toast{position:fixed;bottom:24px;right:24px;background:var(--bg-surface);border:1px solid var(--border);border-radius:var(--radius);padding:12px 20px;font-size:13px;color:var(--text-primary);box-shadow:var(--shadow);z-index:500;transform:translateY(100px);opacity:0;transition:all 0.3s ease;display:flex;align-items:center;gap:8px}
+.toast.visible{transform:translateY(0);opacity:1}
+.toast.success{border-color:var(--success)}
+.toast.error{border-color:var(--error)}
+
+/* Responsive */
+@media(max-width:768px){
+  .main{flex-direction:column}
+  .resizer{width:100%;height:4px;cursor:row-resize}
+  .header{padding:8px 12px}
+  .toolbar{padding:6px 10px}
+  .btn span.label{display:none}
+  .pane{min-height:200px}
+}
+@media(max-width:480px){
+  .logo span{display:none}
+  .stats-bar{gap:8px;flex-wrap:wrap}
+}
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="header">
+  <div class="logo">
+    <div class="logo-icon">{}</div>
+    <span>JSONFlow</span>
+  </div>
+  <div class="header-actions">
+    <button class="btn btn-sm btn-premium" onclick="showPremiumModal('all')" title="Upgrade to Pro">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      <span class="label">Pro</span>
+    </button>
+    <div class="theme-toggle" onclick="toggleTheme()" title="Toggle theme">
+      <div class="theme-icons"><span>&#9790;</span><span>&#9728;</span></div>
+    </div>
+  </div>
+</header>
+
+<!-- Toolbar -->
+<div class="toolbar">
+  <div class="toolbar-group">
+    <button class="btn btn-primary btn-sm" onclick="formatJSON()" title="Format JSON (Ctrl+Shift+F)">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h10M4 18h14"/></svg>
+      <span class="label">Format</span>
+    </button>
+    <button class="btn btn-sm" onclick="minifyJSON()" title="Minify JSON">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h16"/></svg>
+      <span class="label">Minify</span>
+    </button>
+    <select class="indent-select" id="indentSelect" title="Indentation">
+      <option value="2">2 Spaces</option>
+      <option value="4">4 Spaces</option>
+      <option value="tab">Tab</option>
+    </select>
+  </div>
+  <div class="toolbar-divider"></div>
+  <div class="toolbar-group">
+    <button class="btn btn-sm" onclick="copyOutput()" title="Copy output (Ctrl+Shift+C)">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+      <span class="label">Copy</span>
+    </button>
+    <button class="btn btn-sm" onclick="downloadJSON()" title="Download JSON">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+      <span class="label">Download</span>
+    </button>
+    <button class="btn btn-sm" onclick="toggleSearch()" title="Search (Ctrl+F)">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+      <span class="label">Search</span>
+    </button>
+  </div>
+  <div class="toolbar-divider"></div>
+  <div class="toolbar-group">
+    <button class="btn btn-sm" onclick="clearAll()" title="Clear all">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6M8 6V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>
+      <span class="label">Clear</span>
+    </button>
+    <label class="btn btn-sm" title="Upload JSON file">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
+      <span class="label">Upload</span>
+      <input type="file" accept=".json,.txt" id="fileInput" hidden onchange="handleFileUpload(event)">
+    </label>
+  </div>
+  <div class="toolbar-divider"></div>
+  <div class="toolbar-group">
+    <button class="btn btn-sm" onclick="showPremiumModal('diff')" title="JSON Diff (Pro)">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></svg>
+      <span class="label">Diff</span>
+      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="opacity:0.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+    </button>
+    <button class="btn btn-sm" onclick="showPremiumModal('convert')" title="Convert JSON (Pro)">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 1l4 4-4 4"/><path d="M3 11V9a4 4 0 014-4h14M7 23l-4-4 4-4"/><path d="M21 13v2a4 4 0 01-4 4H3"/></svg>
+      <span class="label">Convert</span>
+      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="opacity:0.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+    </button>
+  </div>
+  <div class="toolbar-group" style="margin-left:auto">
+    <button class="btn btn-sm" onclick="loadSample()" title="Load sample JSON">Sample</button>
+  </div>
+</div>
+
+<!-- Stats Bar -->
+<div class="stats-bar">
+  <div class="stat">Characters: <span class="stat-value" id="charCount">0</span></div>
+  <div class="stat">Lines: <span class="stat-value" id="lineCount">0</span></div>
+  <div class="stat">Size: <span class="stat-value" id="sizeCount">0 B</span></div>
+  <div class="stat">Depth: <span class="stat-value" id="depthCount">0</span></div>
+  <div class="validation-status empty" id="validationStatus">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+    Paste JSON to validate
+  </div>
+</div>
+
+<!-- Main Content -->
+<div class="main">
+  <!-- Input Pane -->
+  <div class="pane" id="inputPane" style="flex:1">
+    <div class="pane-header">
+      <span class="pane-title">Input</span>
+      <div class="pane-actions">
+        <button class="btn btn-sm btn-icon" onclick="pasteFromClipboard()" title="Paste from clipboard">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 4h2a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="editor-wrapper">
+      <div class="drop-zone" id="dropZone">Drop JSON file here</div>
+      <div class="editor-container">
+        <div class="line-numbers" id="inputLineNumbers"><div>1</div></div>
+        <div class="editor-area">
+          <textarea class="code-input" id="jsonInput" placeholder='Paste your JSON here...
+
+Examples:
+  {"name": "JSONFlow", "version": "1.0"}
+  [1, 2, 3, "hello"]
+
+Or drag & drop a .json file' spellcheck="false"></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Resizer -->
+  <div class="resizer" id="resizer"></div>
+
+  <!-- Output Pane -->
+  <div class="pane" id="outputPane" style="flex:1">
+    <div class="pane-header">
+      <span class="pane-title">Output</span>
+    </div>
+    <div class="view-tabs">
+      <button class="view-tab active" data-view="formatted" onclick="switchView('formatted')">Formatted</button>
+      <button class="view-tab" data-view="tree" onclick="switchView('tree')">Tree View</button>
+    </div>
+    <div class="search-bar" id="searchBar">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+      <input class="search-input" id="searchInput" type="text" placeholder="Search keys or values..." oninput="handleSearch()">
+      <span class="search-count" id="searchCount"></span>
+      <div class="search-nav">
+        <button class="btn btn-sm btn-icon" onclick="searchNav(-1)" title="Previous match">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 15l-6-6-6 6"/></svg>
+        </button>
+        <button class="btn btn-sm btn-icon" onclick="searchNav(1)" title="Next match">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+      </div>
+      <button class="btn btn-sm btn-icon" onclick="toggleSearch()" title="Close search">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="editor-wrapper">
+      <div id="formattedView" class="output-area" style="display:flex">
+        <div class="output-placeholder" id="outputPlaceholder">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6h16M4 12h10M4 18h14"/></svg>
+          <div>Formatted output will appear here</div>
+          <div style="font-size:12px">Paste JSON on the left and click Format</div>
+        </div>
+        <div class="editor-container" id="outputContainer" style="display:none">
+          <div class="line-numbers" id="outputLineNumbers"></div>
+          <div class="syntax-output" id="syntaxOutput"></div>
+        </div>
+      </div>
+      <div id="treeView" class="tree-view" style="display:none"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Premium Modal -->
+<div class="modal-overlay" id="premiumModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closePremiumModal()">&times;</button>
+    <div class="modal-badge">PRO FEATURE</div>
+    <h2 id="premiumTitle">Unlock JSONFlow Pro</h2>
+    <p id="premiumDesc">Get access to powerful features designed for professional developers and teams.</p>
+    <div class="pricing-cards">
+      <div class="pricing-card" onclick="handlePurchase('diff')">
+        <div>
+          <div class="feature-name">JSON Diff Tool</div>
+          <div class="feature-desc">Compare two JSON documents side by side</div>
+        </div>
+        <div class="price">$4.99<span>/mo</span></div>
+      </div>
+      <div class="pricing-card" onclick="handlePurchase('convert')">
+        <div>
+          <div class="feature-name">JSON to CSV / YAML</div>
+          <div class="feature-desc">Export JSON to multiple formats instantly</div>
+        </div>
+        <div class="price">$4.99<span>/mo</span></div>
+      </div>
+      <div class="pricing-card" onclick="handlePurchase('api')">
+        <div>
+          <div class="feature-name">API Access</div>
+          <div class="feature-desc">Format &amp; validate via REST API</div>
+        </div>
+        <div class="price">$9.99<span>/mo</span></div>
+      </div>
+      <div class="pricing-card" onclick="handlePurchase('unlimited')">
+        <div>
+          <div class="feature-name">Unlimited File Size</div>
+          <div class="feature-desc">Process files larger than 1 MB</div>
+        </div>
+        <div class="price">$4.99<span>/mo</span></div>
+      </div>
+    </div>
+    <div class="modal-footer">Cancel anytime. Secure payment via Stripe.</div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script>
+// State
+let currentJSON = null;
+let formattedOutput = '';
+let searchMatches = [];
+let searchIndex = -1;
+const MAX_FREE_SIZE = 1048576; // 1MB
+
+// DOM refs
+const jsonInput = document.getElementById('jsonInput');
+const syntaxOutput = document.getElementById('syntaxOutput');
+const outputContainer = document.getElementById('outputContainer');
+const outputPlaceholder = document.getElementById('outputPlaceholder');
+const inputLineNumbers = document.getElementById('inputLineNumbers');
+const outputLineNumbers = document.getElementById('outputLineNumbers');
+const validationStatus = document.getElementById('validationStatus');
+const treeViewEl = document.getElementById('treeView');
+const formattedViewEl = document.getElementById('formattedView');
+const searchBar = document.getElementById('searchBar');
+const searchInput = document.getElementById('searchInput');
+const searchCount = document.getElementById('searchCount');
+
+// ===== INPUT HANDLING =====
+jsonInput.addEventListener('input', debounce(onInputChange, 200));
+jsonInput.addEventListener('scroll', syncInputScroll);
+jsonInput.addEventListener('keydown', handleInputKeydown);
+
+function onInputChange() {
+  updateStats();
+  validateInput();
+  updateInputLineNumbers();
+}
+
+function updateStats() {
+  const text = jsonInput.value;
+  const chars = text.length;
+  const lines = text ? text.split('\n').length : 0;
+  const bytes = new Blob([text]).size;
+  document.getElementById('charCount').textContent = chars.toLocaleString();
+  document.getElementById('lineCount').textContent = lines.toLocaleString();
+  document.getElementById('sizeCount').textContent = formatBytes(bytes);
+  try {
+    const parsed = JSON.parse(text);
+    document.getElementById('depthCount').textContent = getDepth(parsed);
+  } catch { document.getElementById('depthCount').textContent = '-'; }
+}
+
+function formatBytes(b) {
+  if (b === 0) return '0 B';
+  const k = 1024, s = ['B','KB','MB','GB'];
+  const i = Math.floor(Math.log(b) / Math.log(k));
+  return parseFloat((b / Math.pow(k, i)).toFixed(1)) + ' ' + s[i];
+}
+
+function getDepth(obj, d = 0) {
+  if (obj === null || typeof obj !== 'object') return d;
+  const entries = Array.isArray(obj) ? obj : Object.values(obj);
+  if (entries.length === 0) return d + 1;
+  return Math.max(...entries.map(v => getDepth(v, d + 1)));
+}
+
+function validateInput() {
+  const text = jsonInput.value.trim();
+  if (!text) {
+    setValidation('empty', 'Paste JSON to validate');
+    return null;
+  }
+  if (new Blob([text]).size > MAX_FREE_SIZE) {
+    setValidation('invalid', 'File exceeds 1 MB free limit');
+    showPremiumModal('unlimited');
+    return null;
+  }
+  try {
+    const parsed = JSON.parse(text);
+    currentJSON = parsed;
+    setValidation('valid', 'Valid JSON');
+    return parsed;
+  } catch (e) {
+    currentJSON = null;
+    const msg = e.message;
+    const posMatch = msg.match(/position\s+(\d+)/i);
+    let detail = msg;
+    if (posMatch) {
+      const pos = parseInt(posMatch[1]);
+      const before = text.substring(0, pos);
+      const line = before.split('\n').length;
+      const col = pos - before.lastIndexOf('\n');
+      detail = `Line ${line}, Column ${col}: ${msg}`;
+    }
+    setValidation('invalid', detail);
+    return null;
+  }
+}
+
+function setValidation(type, msg) {
+  const icons = {
+    valid: '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>',
+    invalid: '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/></svg>',
+    empty: '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>'
+  };
+  validationStatus.className = 'validation-status ' + type;
+  validationStatus.innerHTML = icons[type] + ' ' + escapeHtml(msg);
+}
+
+function updateInputLineNumbers() {
+  const lines = (jsonInput.value || '').split('\n').length;
+  let html = '';
+  for (let i = 1; i <= lines; i++) html += '<div>' + i + '</div>';
+  inputLineNumbers.innerHTML = html;
+}
+
+function syncInputScroll() {
+  inputLineNumbers.style.transform = `translateY(-${jsonInput.scrollTop}px)`;
+}
+
+function handleInputKeydown(e) {
+  if (e.key === 'Tab') {
+    e.preventDefault();
+    const start = this.selectionStart, end = this.selectionEnd;
+    const indent = document.getElementById('indentSelect').value;
+    const tab = indent === 'tab' ? '\t' : ' '.repeat(parseInt(indent));
+    this.value = this.value.substring(0, start) + tab + this.value.substring(end);
+    this.selectionStart = this.selectionEnd = start + tab.length;
+    onInputChange();
+  }
+  if (e.ctrlKey || e.metaKey) {
+    if (e.shiftKey && e.key === 'f') { e.preventDefault(); formatJSON(); }
+    if (e.shiftKey && e.key === 'c') { e.preventDefault(); copyOutput(); }
+    if (e.key === 'f' && !e.shiftKey) { e.preventDefault(); toggleSearch(); }
+  }
+}
+
+// ===== FORMAT / MINIFY =====
+function getIndent() {
+  const v = document.getElementById('indentSelect').value;
+  return v === 'tab' ? '\t' : parseInt(v);
+}
+
+function formatJSON() {
+  const parsed = validateInput();
+  if (!parsed && currentJSON === null) {
+    if (!jsonInput.value.trim()) { showToast('Paste some JSON first', 'error'); return; }
+    showToast('Fix JSON errors before formatting', 'error');
+    return;
+  }
+  const data = parsed || currentJSON;
+  formattedOutput = JSON.stringify(data, null, getIndent());
+  showFormattedOutput(formattedOutput);
+  showToast('JSON formatted');
+}
+
+function minifyJSON() {
+  const parsed = validateInput();
+  if (!parsed && currentJSON === null) {
+    if (!jsonInput.value.trim()) { showToast('Paste some JSON first', 'error'); return; }
+    showToast('Fix JSON errors before minifying', 'error');
+    return;
+  }
+  const data = parsed || currentJSON;
+  formattedOutput = JSON.stringify(data);
+  jsonInput.value = formattedOutput;
+  showFormattedOutput(formattedOutput);
+  updateInputLineNumbers();
+  updateStats();
+  showToast('JSON minified');
+}
+
+function showFormattedOutput(text) {
+  outputPlaceholder.style.display = 'none';
+  outputContainer.style.display = 'flex';
+  const highlighted = syntaxHighlight(text);
+  syntaxOutput.innerHTML = highlighted;
+  const lines = text.split('\n');
+  let lnHtml = '';
+  for (let i = 1; i <= lines.length; i++) lnHtml += '<div>' + i + '</div>';
+  outputLineNumbers.innerHTML = lnHtml;
+  // also build tree if data available
+  if (currentJSON !== null) buildTree(currentJSON);
+}
+
+// ===== SYNTAX HIGHLIGHTING =====
+function syntaxHighlight(json) {
+  return escapeHtml(json).replace(
+    /("(\\u[\da-fA-F]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g,
+    function(match) {
+      let cls = 'jn'; // number
+      if (/^"/.test(match)) {
+        cls = /:$/.test(match) ? 'jk' : 'js'; // key or string
+      } else if (/true|false/.test(match)) {
+        cls = 'jb';
+      } else if (/null/.test(match)) {
+        cls = 'jl';
+      }
+      // For keys, remove the trailing colon from the span
+      if (cls === 'jk') {
+        return '<span class="jk">' + match.slice(0, -1) + '</span>:';
+      }
+      return '<span class="' + cls + '">' + match + '</span>';
+    }
+  );
+}
+
+function escapeHtml(str) {
+  return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+// ===== TREE VIEW =====
+function buildTree(data) {
+  treeViewEl.innerHTML = renderTreeNode(data, '', true);
+}
+
+function renderTreeNode(value, key, isRoot) {
+  const id = 'tn_' + Math.random().toString(36).substr(2, 8);
+  if (value === null) {
+    return wrapTreeLeaf(key, '<span class="tree-null">null</span>', isRoot);
+  }
+  if (typeof value === 'boolean') {
+    return wrapTreeLeaf(key, '<span class="tree-bool">' + value + '</span>', isRoot);
+  }
+  if (typeof value === 'number') {
+    return wrapTreeLeaf(key, '<span class="tree-number">' + value + '</span>', isRoot);
+  }
+  if (typeof value === 'string') {
+    return wrapTreeLeaf(key, '<span class="tree-string">"' + escapeHtml(value) + '"</span>', isRoot);
+  }
+  const isArray = Array.isArray(value);
+  const entries = isArray ? value.map((v, i) => [i, v]) : Object.entries(value);
+  const open = isArray ? '[' : '{';
+  const close = isArray ? ']' : '}';
+  const count = entries.length;
+
+  let html = '<div class="tree-node' + (isRoot ? ' root' : '') + '">';
+  html += '<div class="tree-toggle" onclick="toggleTreeNode(\'' + id + '\')">';
+  html += '<span class="tree-arrow" id="arrow_' + id + '">&#9660;</span>';
+  if (key !== '' && !isRoot) html += '<span class="tree-key">"' + escapeHtml(String(key)) + '"</span>: ';
+  html += '<span class="tree-bracket">' + open + '</span>';
+  html += '<span class="tree-count">' + count + (count === 1 ? ' item' : ' items') + '</span>';
+  html += '</div>';
+  html += '<div class="tree-children" id="children_' + id + '">';
+  entries.forEach(([k, v]) => { html += renderTreeNode(v, k, false); });
+  html += '<div style="padding-left:0"><span class="tree-bracket">' + close + '</span></div>';
+  html += '</div></div>';
+  return html;
+}
+
+function wrapTreeLeaf(key, valueHtml, isRoot) {
+  let html = '<div class="tree-node' + (isRoot ? ' root' : '') + '">';
+  html += '<span style="display:inline-block;width:14px"></span>';
+  if (key !== '' && !isRoot) html += '<span class="tree-key">"' + escapeHtml(String(key)) + '"</span>: ';
+  html += '<span class="tree-value-inline">' + valueHtml + '</span>';
+  html += '</div>';
+  return html;
+}
+
+function toggleTreeNode(id) {
+  const children = document.getElementById('children_' + id);
+  const arrow = document.getElementById('arrow_' + id);
+  if (children.classList.contains('collapsed')) {
+    children.classList.remove('collapsed');
+    arrow.classList.remove('collapsed');
+  } else {
+    children.classList.add('collapsed');
+    arrow.classList.add('collapsed');
+  }
+}
+
+// ===== VIEW SWITCHING =====
+function switchView(view) {
+  document.querySelectorAll('.view-tab').forEach(t => t.classList.toggle('active', t.dataset.view === view));
+  formattedViewEl.style.display = view === 'formatted' ? 'flex' : 'none';
+  treeViewEl.style.display = view === 'tree' ? 'block' : 'none';
+}
+
+// ===== SEARCH =====
+function toggleSearch() {
+  searchBar.classList.toggle('visible');
+  if (searchBar.classList.contains('visible')) {
+    searchInput.focus();
+  } else {
+    searchInput.value = '';
+    searchCount.textContent = '';
+    clearSearchHighlights();
+  }
+}
+
+function handleSearch() {
+  const query = searchInput.value.trim().toLowerCase();
+  clearSearchHighlights();
+  searchMatches = [];
+  searchIndex = -1;
+  if (!query || !formattedOutput) { searchCount.textContent = ''; return; }
+  const el = syntaxOutput;
+  const html = el.innerHTML;
+  const textContent = formattedOutput.toLowerCase();
+  let pos = 0;
+  while ((pos = textContent.indexOf(query, pos)) !== -1) {
+    searchMatches.push(pos);
+    pos += query.length;
+  }
+  if (searchMatches.length > 0) {
+    highlightSearchResults(query);
+    searchIndex = 0;
+    activateSearchResult();
+  }
+  searchCount.textContent = searchMatches.length > 0 ? `${searchIndex + 1}/${searchMatches.length}` : 'No results';
+}
+
+function highlightSearchResults(query) {
+  // Re-render with highlights
+  let highlighted = syntaxHighlight(formattedOutput);
+  // We'll apply highlights on the text representation
+  const div = document.createElement('div');
+  div.innerHTML = highlighted;
+  const text = formattedOutput;
+  const lowerText = text.toLowerCase();
+  const lowerQuery = query.toLowerCase();
+  // Rebuild with highlights in the raw text, then re-highlight
+  let result = '';
+  let last = 0;
+  let positions = [];
+  let pos = 0;
+  while ((pos = lowerText.indexOf(lowerQuery, pos)) !== -1) {
+    positions.push(pos);
+    pos += lowerQuery.length;
+  }
+  // Simple approach: mark in pre-escaped text
+  let escaped = escapeHtml(text);
+  let escapedLower = escaped.toLowerCase();
+  let escapedQuery = escapeHtml(query).toLowerCase();
+
+  // Since escapeHtml may change lengths, just re-do syntax highlight with markers
+  // Better approach: insert markers in raw text, then highlight
+  let markedText = '';
+  last = 0;
+  for (let i = 0; i < positions.length; i++) {
+    const p = positions[i];
+    markedText += text.substring(last, p);
+    markedText += '\x00HLSTART' + i + '\x00' + text.substring(p, p + query.length) + '\x00HLEND\x00';
+    last = p + query.length;
+  }
+  markedText += text.substring(last);
+
+  let html = escapeHtml(markedText);
+  // Now apply syntax highlighting on this
+  html = html.replace(
+    /("(\\u[\da-fA-F]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g,
+    function(match) {
+      let cls = 'jn';
+      if (/^"/.test(match)) {
+        cls = /:$/.test(match) ? 'jk' : 'js';
+      } else if (/true|false/.test(match)) {
+        cls = 'jb';
+      } else if (/null/.test(match)) {
+        cls = 'jl';
+      }
+      if (cls === 'jk') return '<span class="jk">' + match.slice(0, -1) + '</span>:';
+      return '<span class="' + cls + '">' + match + '</span>';
+    }
+  );
+
+  // Replace markers with highlight spans
+  html = html.replace(/\x00HLSTART(\d+)\x00/g, function(_, idx) {
+    return '<span class="search-highlight" data-si="' + idx + '">';
+  });
+  html = html.replace(/\x00HLEND\x00/g, '</span>');
+
+  syntaxOutput.innerHTML = html;
+}
+
+function activateSearchResult() {
+  document.querySelectorAll('.search-highlight').forEach((el, i) => {
+    el.classList.toggle('search-active', i === searchIndex);
+    if (i === searchIndex) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+  searchCount.textContent = `${searchIndex + 1}/${searchMatches.length}`;
+}
+
+function searchNav(dir) {
+  if (searchMatches.length === 0) return;
+  searchIndex = (searchIndex + dir + searchMatches.length) % searchMatches.length;
+  activateSearchResult();
+}
+
+function clearSearchHighlights() {
+  if (formattedOutput) {
+    syntaxOutput.innerHTML = syntaxHighlight(formattedOutput);
+  }
+}
+
+// ===== ACTIONS =====
+function copyOutput() {
+  if (!formattedOutput) { showToast('Nothing to copy', 'error'); return; }
+  navigator.clipboard.writeText(formattedOutput).then(() => showToast('Copied to clipboard'));
+}
+
+function downloadJSON() {
+  if (!formattedOutput) { showToast('Nothing to download', 'error'); return; }
+  const blob = new Blob([formattedOutput], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'formatted.json';
+  a.click();
+  URL.revokeObjectURL(url);
+  showToast('Download started');
+}
+
+function clearAll() {
+  jsonInput.value = '';
+  formattedOutput = '';
+  currentJSON = null;
+  syntaxOutput.innerHTML = '';
+  outputContainer.style.display = 'none';
+  outputPlaceholder.style.display = 'flex';
+  treeViewEl.innerHTML = '';
+  updateInputLineNumbers();
+  updateStats();
+  setValidation('empty', 'Paste JSON to validate');
+  showToast('Cleared');
+}
+
+async function pasteFromClipboard() {
+  try {
+    const text = await navigator.clipboard.readText();
+    jsonInput.value = text;
+    onInputChange();
+    formatJSON();
+  } catch { showToast('Clipboard access denied', 'error'); }
+}
+
+function handleFileUpload(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  if (file.size > MAX_FREE_SIZE) {
+    showPremiumModal('unlimited');
+    e.target.value = '';
+    return;
+  }
+  const reader = new FileReader();
+  reader.onload = function(ev) {
+    jsonInput.value = ev.target.result;
+    onInputChange();
+    formatJSON();
+  };
+  reader.readAsText(file);
+  e.target.value = '';
+}
+
+function loadSample() {
+  const sample = {
+    "name": "JSONFlow",
+    "version": "1.0.0",
+    "description": "Professional JSON Formatter & Validator",
+    "features": [
+      "Format & Beautify",
+      "Minify",
+      "Validate",
+      "Tree View",
+      "Syntax Highlighting",
+      "Search"
+    ],
+    "pricing": {
+      "free": {
+        "maxFileSize": "1 MB",
+        "features": ["Format", "Validate", "Tree View", "Search"]
+      },
+      "pro": {
+        "price": "$4.99/month",
+        "features": ["JSON Diff", "CSV/YAML Export", "API Access", "Unlimited Size"]
+      }
+    },
+    "stats": {
+      "users": 125000,
+      "filesProcessed": 5840000,
+      "uptime": 99.97
+    },
+    "isAwesome": true,
+    "bugs": null,
+    "tags": ["json", "formatter", "validator", "developer-tools"],
+    "nested": {
+      "level1": {
+        "level2": {
+          "level3": {
+            "deep": "value",
+            "array": [1, 2, 3, {"key": "nested object in array"}]
+          }
+        }
+      }
+    }
+  };
+  jsonInput.value = JSON.stringify(sample);
+  onInputChange();
+  formatJSON();
+}
+
+// ===== DRAG & DROP =====
+const dropZone = document.getElementById('dropZone');
+const editorWrapper = jsonInput.closest('.editor-wrapper');
+
+editorWrapper.addEventListener('dragenter', e => { e.preventDefault(); dropZone.classList.add('active'); });
+editorWrapper.addEventListener('dragover', e => { e.preventDefault(); });
+editorWrapper.addEventListener('dragleave', e => {
+  if (!editorWrapper.contains(e.relatedTarget)) dropZone.classList.remove('active');
+});
+editorWrapper.addEventListener('drop', e => {
+  e.preventDefault();
+  dropZone.classList.remove('active');
+  const file = e.dataTransfer.files[0];
+  if (file) {
+    if (file.size > MAX_FREE_SIZE) { showPremiumModal('unlimited'); return; }
+    const reader = new FileReader();
+    reader.onload = ev => { jsonInput.value = ev.target.result; onInputChange(); formatJSON(); };
+    reader.readAsText(file);
+  }
+});
+
+// ===== RESIZER =====
+const resizer = document.getElementById('resizer');
+const inputPane = document.getElementById('inputPane');
+const outputPane = document.getElementById('outputPane');
+let isResizing = false;
+
+resizer.addEventListener('mousedown', e => {
+  isResizing = true;
+  resizer.classList.add('active');
+  document.body.style.cursor = 'col-resize';
+  document.body.style.userSelect = 'none';
+  e.preventDefault();
+});
+
+document.addEventListener('mousemove', e => {
+  if (!isResizing) return;
+  const container = document.querySelector('.main');
+  const rect = container.getBoundingClientRect();
+  const ratio = (e.clientX - rect.left) / rect.width;
+  const clamped = Math.max(0.2, Math.min(0.8, ratio));
+  inputPane.style.flex = clamped;
+  outputPane.style.flex = 1 - clamped;
+});
+
+document.addEventListener('mouseup', () => {
+  if (isResizing) {
+    isResizing = false;
+    resizer.classList.remove('active');
+    document.body.style.cursor = '';
+    document.body.style.userSelect = '';
+  }
+});
+
+// ===== THEME =====
+function toggleTheme() {
+  const html = document.documentElement;
+  const current = html.getAttribute('data-theme');
+  const next = current === 'dark' ? 'light' : 'dark';
+  html.setAttribute('data-theme', next);
+  localStorage.setItem('jsonflow-theme', next);
+}
+
+(function initTheme() {
+  const saved = localStorage.getItem('jsonflow-theme');
+  if (saved) document.documentElement.setAttribute('data-theme', saved);
+})();
+
+// ===== PREMIUM MODAL =====
+function showPremiumModal(feature) {
+  const modal = document.getElementById('premiumModal');
+  const title = document.getElementById('premiumTitle');
+  const desc = document.getElementById('premiumDesc');
+  const msgs = {
+    diff: { t: 'JSON Diff Tool', d: 'Compare two JSON documents side by side with highlighted differences. See exactly what changed between versions.' },
+    convert: { t: 'JSON Converter', d: 'Convert JSON to CSV, YAML, and more formats. Export your data instantly in the format you need.' },
+    api: { t: 'API Access', d: 'Integrate JSONFlow into your workflow with our REST API. Format and validate JSON programmatically.' },
+    unlimited: { t: 'Unlimited File Size', d: 'Process JSON files of any size. The free tier supports files up to 1 MB.' },
+    all: { t: 'Unlock JSONFlow Pro', d: 'Get access to powerful features designed for professional developers and teams.' }
+  };
+  const m = msgs[feature] || msgs.all;
+  title.textContent = m.t;
+  desc.textContent = m.d;
+  modal.classList.add('visible');
+}
+
+function closePremiumModal() {
+  document.getElementById('premiumModal').classList.remove('visible');
+}
+
+document.getElementById('premiumModal').addEventListener('click', e => {
+  if (e.target === e.currentTarget) closePremiumModal();
+});
+
+function handlePurchase(plan) {
+  showToast('Payment integration coming soon! Contact us for early access.', 'success');
+  closePremiumModal();
+}
+
+// ===== TOAST =====
+function showToast(msg, type = 'success') {
+  const toast = document.getElementById('toast');
+  const icons = {
+    success: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>',
+    error: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--error)" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/></svg>'
+  };
+  toast.innerHTML = (icons[type] || '') + msg;
+  toast.className = 'toast ' + type + ' visible';
+  clearTimeout(toast._timeout);
+  toast._timeout = setTimeout(() => toast.classList.remove('visible'), 2500);
+}
+
+// ===== UTILS =====
+function debounce(fn, ms) {
+  let t;
+  return function(...args) { clearTimeout(t); t = setTimeout(() => fn.apply(this, args), ms); };
+}
+
+// ===== KEYBOARD SHORTCUTS =====
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    if (document.getElementById('premiumModal').classList.contains('visible')) closePremiumModal();
+    else if (searchBar.classList.contains('visible')) toggleSearch();
+  }
+});
+
+// Init
+updateInputLineNumbers();
+</script>
+</body>
+</html>
