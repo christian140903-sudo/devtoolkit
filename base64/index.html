@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Base64 Encoder & Decoder Online | Base64Tool</title>
+<meta name="description" content="Free online Base64 encoder and decoder. Encode text to Base64 or decode Base64 to text instantly. Supports UTF-8, file encoding. No signup, no ads.">
+<meta name="keywords" content="base64 encoder, base64 decoder, base64 online, encode base64, decode base64, base64 converter, base64 tool free, text to base64, base64 to text">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Base64Tool">
+<link rel="canonical" href="https://christian140903-sudo.github.io/devtoolkit/base64/">
+<meta property="og:title" content="Free Base64 Encoder & Decoder Online | Base64Tool">
+<meta property="og:description" content="Encode and decode Base64 instantly. Supports text, URLs, JSON, and file encoding. 100% free, runs in your browser.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://christian140903-sudo.github.io/devtoolkit/base64/">
+<meta property="og:site_name" content="DevToolkit">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free Base64 Encoder & Decoder Online">
+<meta name="twitter:description" content="Encode and decode Base64 instantly. Free, no signup required.">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Base64Tool","url":"https://christian140903-sudo.github.io/devtoolkit/base64/","description":"Free online Base64 encoder and decoder","applicationCategory":"DeveloperApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#050508;--surface:#0d0d14;--surface2:#14141f;--border:#1e1e2e;--primary:#6366f1;--primary-glow:rgba(99,102,241,.15);--accent:#a855f7;--text:#e2e8f0;--text-muted:#94a3b8;--success:#22c55e;--error:#ef4444;--radius:16px;--font:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif}
+body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;line-height:1.6}
+a{color:var(--primary);text-decoration:none}
+a:hover{text-decoration:underline}
+.container{max-width:900px;margin:0 auto;padding:2rem 1.5rem}
+header{text-align:center;padding:3rem 0 2rem}
+header h1{font-size:clamp(1.8rem,4vw,2.5rem);font-weight:800;letter-spacing:-.5px;background:linear-gradient(135deg,var(--primary),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+header p{color:var(--text-muted);margin-top:.5rem;font-size:1.05rem}
+.back-link{display:inline-flex;align-items:center;gap:.5rem;color:var(--text-muted);font-size:.9rem;margin-bottom:1rem;transition:color .2s}
+.back-link:hover{color:var(--primary);text-decoration:none}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;margin-bottom:1.5rem}
+.mode-toggle{display:flex;gap:.5rem;margin-bottom:1.5rem}
+.mode-btn{flex:1;padding:.75rem;border:1px solid var(--border);border-radius:12px;background:var(--surface2);color:var(--text-muted);font-size:.95rem;font-weight:600;cursor:pointer;transition:all .2s}
+.mode-btn.active{background:var(--primary);color:#fff;border-color:var(--primary);box-shadow:0 0 20px var(--primary-glow)}
+.mode-btn:hover:not(.active){border-color:var(--primary);color:var(--text)}
+label{display:block;font-size:.85rem;font-weight:600;color:var(--text-muted);margin-bottom:.5rem;text-transform:uppercase;letter-spacing:.5px}
+textarea{width:100%;min-height:180px;padding:1rem;background:var(--surface2);border:1px solid var(--border);border-radius:12px;color:var(--text);font-family:'SF Mono',Monaco,Consolas,monospace;font-size:.9rem;resize:vertical;transition:border-color .2s;line-height:1.5}
+textarea:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px var(--primary-glow)}
+textarea::placeholder{color:var(--text-muted)}
+.actions{display:flex;gap:.75rem;margin:1rem 0;flex-wrap:wrap}
+.btn{padding:.65rem 1.25rem;border:none;border-radius:10px;font-size:.9rem;font-weight:600;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:.5rem}
+.btn-primary{background:var(--primary);color:#fff}
+.btn-primary:hover{background:#4f46e5;transform:translateY(-1px);box-shadow:0 4px 15px var(--primary-glow)}
+.btn-secondary{background:var(--surface2);color:var(--text);border:1px solid var(--border)}
+.btn-secondary:hover{border-color:var(--primary);color:var(--primary)}
+.status{padding:.5rem 1rem;border-radius:8px;font-size:.85rem;font-weight:500;margin-top:.75rem;display:none}
+.status.success{display:block;background:rgba(34,197,94,.1);color:var(--success);border:1px solid rgba(34,197,94,.2)}
+.status.error{display:block;background:rgba(239,68,68,.1);color:var(--error);border:1px solid rgba(239,68,68,.2)}
+.stats{display:flex;gap:1.5rem;margin-top:1rem;flex-wrap:wrap}
+.stat{font-size:.85rem;color:var(--text-muted)}
+.stat span{color:var(--text);font-weight:600}
+.info-section{margin-top:2rem}
+.info-section h2{font-size:1.2rem;font-weight:700;margin-bottom:1rem}
+.info-section p{color:var(--text-muted);font-size:.95rem;margin-bottom:.75rem}
+.info-section code{background:var(--surface2);padding:.15rem .4rem;border-radius:4px;font-size:.85rem;color:var(--primary)}
+footer{text-align:center;padding:2rem 0;color:var(--text-muted);font-size:.85rem;border-top:1px solid var(--border);margin-top:3rem}
+.ecosystem{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-top:2rem}
+.eco-link{display:block;padding:1rem;background:var(--surface);border:1px solid var(--border);border-radius:12px;transition:all .2s;text-decoration:none}
+.eco-link:hover{border-color:var(--primary);transform:translateY(-2px);text-decoration:none}
+.eco-link strong{display:block;color:var(--text);font-size:.95rem}
+.eco-link span{color:var(--text-muted);font-size:.8rem}
+@media(max-width:600px){.container{padding:1rem}.mode-toggle{flex-direction:column}textarea{min-height:140px}.actions{flex-direction:column}.btn{justify-content:center}}
+</style>
+</head>
+<body>
+<div class="container">
+<a href="../" class="back-link">&larr; Back to DevToolkit</a>
+<header>
+<h1>Base64 Encoder & Decoder</h1>
+<p>Encode text to Base64 or decode Base64 to text. Fast, free, runs in your browser.</p>
+</header>
+
+<div class="card">
+<div class="mode-toggle">
+<button class="mode-btn active" id="encodeMode" onclick="setMode('encode')">Encode &rarr; Base64</button>
+<button class="mode-btn" id="decodeMode" onclick="setMode('decode')">Decode &larr; Base64</button>
+</div>
+
+<div>
+<label id="inputLabel">Input Text</label>
+<textarea id="input" placeholder="Paste your text here to encode to Base64..." spellcheck="false"></textarea>
+</div>
+
+<div class="actions">
+<button class="btn btn-primary" onclick="convert()">Convert</button>
+<button class="btn btn-secondary" onclick="copyOutput()">Copy Result</button>
+<button class="btn btn-secondary" onclick="swapFields()">Swap Input &harr; Output</button>
+<button class="btn btn-secondary" onclick="clearAll()">Clear</button>
+</div>
+
+<div>
+<label id="outputLabel">Base64 Output</label>
+<textarea id="output" placeholder="Result will appear here..." readonly spellcheck="false"></textarea>
+</div>
+
+<div class="stats">
+<div class="stat">Input: <span id="inputLen">0</span> chars</div>
+<div class="stat">Output: <span id="outputLen">0</span> chars</div>
+<div class="stat">Ratio: <span id="ratio">-</span></div>
+</div>
+
+<div class="status" id="status"></div>
+</div>
+
+<div class="info-section card">
+<h2>What is Base64?</h2>
+<p>Base64 is a binary-to-text encoding scheme that represents binary data as an ASCII string. It's commonly used to embed images in HTML/CSS, encode email attachments, transmit data in URLs, and store binary data in JSON.</p>
+<p>Base64 encoding increases data size by approximately 33% — every 3 bytes of input become 4 bytes of Base64 output.</p>
+<p>Common use cases: <code>data:image/png;base64,...</code> in HTML, JWT tokens, API authentication headers (<code>Authorization: Basic base64(user:pass)</code>), email MIME encoding.</p>
+</div>
+
+<div class="info-section">
+<h2>More from NexTool</h2>
+<div class="ecosystem">
+<a href="../" class="eco-link"><strong>DevToolkit</strong><span>8+ Free Developer Tools</span></a>
+<a href="https://christian140903-sudo.github.io/template-forge/" class="eco-link" target="_blank"><strong>TemplateForge</strong><span>Premium Website Templates</span></a>
+<a href="https://christian140903-sudo.github.io/prompt-vault/" class="eco-link" target="_blank"><strong>PromptVault</strong><span>AI Prompt Collections</span></a>
+<a href="https://nextool.app" class="eco-link" target="_blank"><strong>NexTool</strong><span>AI Automation Studio</span></a>
+</div>
+</div>
+
+<footer>
+<p>Base64Tool — Part of <a href="../">DevToolkit</a> by <a href="https://nextool.app" target="_blank">NexTool</a></p>
+<p style="margin-top:.5rem">100% free. No data sent to any server. Everything runs in your browser.</p>
+</footer>
+</div>
+
+<script>
+var mode = 'encode';
+var inputEl = document.getElementById('input');
+var outputEl = document.getElementById('output');
+
+function setMode(m) {
+  mode = m;
+  document.getElementById('encodeMode').classList.toggle('active', m === 'encode');
+  document.getElementById('decodeMode').classList.toggle('active', m === 'decode');
+  document.getElementById('inputLabel').textContent = m === 'encode' ? 'Input Text' : 'Base64 Input';
+  document.getElementById('outputLabel').textContent = m === 'encode' ? 'Base64 Output' : 'Decoded Text';
+  inputEl.placeholder = m === 'encode' ? 'Paste your text here to encode to Base64...' : 'Paste Base64 string here to decode...';
+  outputEl.placeholder = 'Result will appear here...';
+  clearAll();
+}
+
+function convert() {
+  var input = inputEl.value;
+  if (!input.trim()) { showStatus('Please enter some text', 'error'); return; }
+  try {
+    var result;
+    if (mode === 'encode') {
+      result = btoa(unescape(encodeURIComponent(input)));
+    } else {
+      result = decodeURIComponent(escape(atob(input.trim())));
+    }
+    outputEl.value = result;
+    updateStats();
+    showStatus(mode === 'encode' ? 'Encoded successfully!' : 'Decoded successfully!', 'success');
+  } catch (e) {
+    showStatus('Error: ' + (mode === 'decode' ? 'Invalid Base64 string' : e.message), 'error');
+  }
+}
+
+function copyOutput() {
+  if (!outputEl.value) { showStatus('Nothing to copy', 'error'); return; }
+  navigator.clipboard.writeText(outputEl.value).then(function() {
+    showStatus('Copied to clipboard!', 'success');
+  });
+}
+
+function swapFields() {
+  var temp = inputEl.value;
+  inputEl.value = outputEl.value;
+  outputEl.value = temp;
+  mode = mode === 'encode' ? 'decode' : 'encode';
+  setMode(mode);
+  inputEl.value = outputEl.value || temp;
+  outputEl.value = '';
+}
+
+function clearAll() {
+  inputEl.value = '';
+  outputEl.value = '';
+  updateStats();
+  document.getElementById('status').style.display = 'none';
+}
+
+function showStatus(msg, type) {
+  var el = document.getElementById('status');
+  el.textContent = msg;
+  el.className = 'status ' + type;
+}
+
+function updateStats() {
+  var il = inputEl.value.length;
+  var ol = outputEl.value.length;
+  document.getElementById('inputLen').textContent = il;
+  document.getElementById('outputLen').textContent = ol;
+  document.getElementById('ratio').textContent = il > 0 && ol > 0 ? (ol / il * 100).toFixed(1) + '%' : '-';
+}
+
+inputEl.addEventListener('input', function() {
+  if (inputEl.value.trim()) convert();
+  updateStats();
+});
+</script>
+</body>
+</html>

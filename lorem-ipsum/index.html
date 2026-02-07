@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Lorem Ipsum Generator Online | LoremForge</title>
+<meta name="description" content="Generate lorem ipsum placeholder text instantly. Choose paragraphs, sentences, or words. Copy with one click. Free, no signup needed.">
+<meta name="keywords" content="lorem ipsum generator, placeholder text, dummy text generator, lorem ipsum online, free lorem ipsum, generate placeholder text, filler text">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://christian140903-sudo.github.io/devtoolkit/lorem-ipsum/">
+<meta property="og:title" content="Free Lorem Ipsum Generator | LoremForge">
+<meta property="og:description" content="Generate placeholder text instantly. Paragraphs, sentences, or words. One-click copy. 100% free.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://christian140903-sudo.github.io/devtoolkit/lorem-ipsum/">
+<meta property="og:site_name" content="DevToolkit">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free Lorem Ipsum Generator Online">
+<meta name="twitter:description" content="Generate placeholder text instantly. Free, no signup required.">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"LoremForge","url":"https://christian140903-sudo.github.io/devtoolkit/lorem-ipsum/","description":"Free online lorem ipsum placeholder text generator","applicationCategory":"DeveloperApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#050508;--surface:#0d0d14;--surface2:#14141f;--border:#1e1e2e;--primary:#6366f1;--primary-glow:rgba(99,102,241,.15);--accent:#a855f7;--text:#e2e8f0;--text-muted:#94a3b8;--success:#22c55e;--radius:16px;--font:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif}
+body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;line-height:1.6}
+a{color:var(--primary);text-decoration:none}a:hover{text-decoration:underline}
+.container{max-width:900px;margin:0 auto;padding:2rem 1.5rem}
+header{text-align:center;padding:3rem 0 2rem}
+header h1{font-size:clamp(1.8rem,4vw,2.5rem);font-weight:800;letter-spacing:-.5px;background:linear-gradient(135deg,var(--primary),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+header p{color:var(--text-muted);margin-top:.5rem;font-size:1.05rem}
+.back-link{display:inline-flex;align-items:center;gap:.5rem;color:var(--text-muted);font-size:.9rem;margin-bottom:1rem;transition:color .2s}
+.back-link:hover{color:var(--primary);text-decoration:none}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;margin-bottom:1.5rem}
+.controls{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;margin-bottom:1.5rem}
+label{display:block;font-size:.85rem;font-weight:600;color:var(--text-muted);margin-bottom:.5rem;text-transform:uppercase;letter-spacing:.5px}
+select,input[type="number"]{width:100%;padding:.65rem .75rem;background:var(--surface2);border:1px solid var(--border);border-radius:10px;color:var(--text);font-size:.9rem;transition:border-color .2s}
+select:focus,input:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px var(--primary-glow)}
+.output{width:100%;min-height:250px;padding:1.25rem;background:var(--surface2);border:1px solid var(--border);border-radius:12px;color:var(--text);font-size:.95rem;line-height:1.8;resize:vertical;white-space:pre-wrap;overflow-y:auto}
+.actions{display:flex;gap:.75rem;margin:1rem 0;flex-wrap:wrap}
+.btn{padding:.65rem 1.25rem;border:none;border-radius:10px;font-size:.9rem;font-weight:600;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:.5rem}
+.btn-primary{background:var(--primary);color:#fff}
+.btn-primary:hover{background:#4f46e5;transform:translateY(-1px);box-shadow:0 4px 15px var(--primary-glow)}
+.btn-secondary{background:var(--surface2);color:var(--text);border:1px solid var(--border)}
+.btn-secondary:hover{border-color:var(--primary);color:var(--primary)}
+.stats{display:flex;gap:1.5rem;flex-wrap:wrap}
+.stat{font-size:.85rem;color:var(--text-muted)}.stat span{color:var(--text);font-weight:600}
+.options{display:flex;gap:1.5rem;margin-bottom:1rem;flex-wrap:wrap}
+.option{display:flex;align-items:center;gap:.5rem;font-size:.9rem;color:var(--text-muted);cursor:pointer}
+.option input{accent-color:var(--primary)}
+.ecosystem{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-top:2rem}
+.eco-link{display:block;padding:1rem;background:var(--surface);border:1px solid var(--border);border-radius:12px;transition:all .2s;text-decoration:none}
+.eco-link:hover{border-color:var(--primary);transform:translateY(-2px);text-decoration:none}
+.eco-link strong{display:block;color:var(--text);font-size:.95rem}
+.eco-link span{color:var(--text-muted);font-size:.8rem}
+.info-section{margin-top:2rem}
+.info-section h2{font-size:1.2rem;font-weight:700;margin-bottom:1rem}
+.info-section p{color:var(--text-muted);font-size:.95rem;margin-bottom:.75rem}
+footer{text-align:center;padding:2rem 0;color:var(--text-muted);font-size:.85rem;border-top:1px solid var(--border);margin-top:3rem}
+.toast{position:fixed;bottom:2rem;right:2rem;padding:.75rem 1.25rem;background:var(--success);color:#fff;border-radius:10px;font-weight:600;font-size:.9rem;transform:translateY(100px);opacity:0;transition:all .3s;z-index:999}
+.toast.show{transform:translateY(0);opacity:1}
+@media(max-width:600px){.controls{grid-template-columns:1fr}.actions{flex-direction:column}.btn{justify-content:center}}
+</style>
+</head>
+<body>
+<div class="container">
+<a href="../" class="back-link">&larr; Back to DevToolkit</a>
+<header>
+<h1>Lorem Ipsum Generator</h1>
+<p>Generate placeholder text for your designs, mockups, and prototypes.</p>
+</header>
+
+<div class="card">
+<div class="controls">
+<div>
+<label>Type</label>
+<select id="type" onchange="generate()">
+<option value="paragraphs">Paragraphs</option>
+<option value="sentences">Sentences</option>
+<option value="words">Words</option>
+</select>
+</div>
+<div>
+<label>Amount</label>
+<input type="number" id="amount" value="3" min="1" max="100" onchange="generate()">
+</div>
+<div>
+<label>Format</label>
+<select id="format" onchange="generate()">
+<option value="plain">Plain Text</option>
+<option value="html">HTML &lt;p&gt; tags</option>
+</select>
+</div>
+</div>
+<div class="options">
+<label class="option"><input type="checkbox" id="startClassic" checked onchange="generate()"> Start with "Lorem ipsum dolor sit amet..."</label>
+</div>
+
+<div class="actions">
+<button class="btn btn-primary" onclick="generate()">Generate</button>
+<button class="btn btn-secondary" onclick="copyText()">Copy to Clipboard</button>
+</div>
+
+<div class="output" id="output"></div>
+
+<div class="stats" style="margin-top:1rem">
+<div class="stat">Words: <span id="wordCount">0</span></div>
+<div class="stat">Characters: <span id="charCount">0</span></div>
+<div class="stat">Paragraphs: <span id="paraCount">0</span></div>
+</div>
+</div>
+
+<div class="info-section card">
+<h2>What is Lorem Ipsum?</h2>
+<p>Lorem Ipsum is placeholder text used in the printing and typesetting industry since the 1500s. It's derived from a work by Cicero written in 45 BC. Designers use it to fill layouts with text that has a natural distribution of letters, making it look like readable English without distracting from the design.</p>
+</div>
+
+<div class="info-section">
+<h2>More from NexTool</h2>
+<div class="ecosystem">
+<a href="../" class="eco-link"><strong>DevToolkit</strong><span>10+ Free Developer Tools</span></a>
+<a href="https://christian140903-sudo.github.io/template-forge/" class="eco-link" target="_blank"><strong>TemplateForge</strong><span>Premium Website Templates</span></a>
+<a href="https://christian140903-sudo.github.io/prompt-vault/" class="eco-link" target="_blank"><strong>PromptVault</strong><span>AI Prompt Collections</span></a>
+<a href="https://nextool.app" class="eco-link" target="_blank"><strong>NexTool</strong><span>AI Automation Studio</span></a>
+</div>
+</div>
+
+<footer>
+<p>LoremForge — Part of <a href="../">DevToolkit</a> by <a href="https://nextool.app" target="_blank">NexTool</a></p>
+<p style="margin-top:.5rem">100% free. No data collected.</p>
+</footer>
+</div>
+
+<div class="toast" id="toast">Copied!</div>
+
+<script>
+var WORDS = ["lorem","ipsum","dolor","sit","amet","consectetur","adipiscing","elit","sed","do","eiusmod","tempor","incididunt","ut","labore","et","dolore","magna","aliqua","enim","ad","minim","veniam","quis","nostrud","exercitation","ullamco","laboris","nisi","aliquip","ex","ea","commodo","consequat","duis","aute","irure","in","reprehenderit","voluptate","velit","esse","cillum","fugiat","nulla","pariatur","excepteur","sint","occaecat","cupidatat","non","proident","sunt","culpa","qui","officia","deserunt","mollit","anim","id","est","laborum","at","vero","eos","accusamus","iusto","odio","dignissimos","ducimus","blanditiis","praesentium","voluptatum","deleniti","atque","corrupti","quos","dolores","quas","molestias","excepturi","occaecati","cupiditate","provident","similique","neque","porro","quisquam","sapiente","delectus","rerum","hic","tenetur","quasi","architecto","beatae","vitae","dicta","explicabo","nemo","ipsam","quia","voluptas","aspernatur","aut","odit","fugit","consequuntur","magni","ratione","sequi","nesciunt","numquam","eius","modi","tempora","totam","rem","aperiam","eaque","ipsa","quae","ab","illo","inventore","veritatis","perspiciatis","unde","omnis","iste","natus","error","accusantium","doloremque","laudantium","completam"];
+var CLASSIC_START = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
+
+function randInt(min,max){return Math.floor(Math.random()*(max-min+1))+min}
+function capitalize(s){return s.charAt(0).toUpperCase()+s.slice(1)}
+function randWord(){return WORDS[randInt(0,WORDS.length-1)]}
+
+function genSentence(){
+  var len=randInt(8,18);
+  var words=[];
+  for(var i=0;i<len;i++)words.push(randWord());
+  words[0]=capitalize(words[0]);
+  return words.join(' ')+'.';
+}
+
+function genParagraph(){
+  var count=randInt(4,8);
+  var sentences=[];
+  for(var i=0;i<count;i++)sentences.push(genSentence());
+  return sentences.join(' ');
+}
+
+function generate(){
+  var type=document.getElementById('type').value;
+  var amount=parseInt(document.getElementById('amount').value)||3;
+  var format=document.getElementById('format').value;
+  var startClassic=document.getElementById('startClassic').checked;
+  amount=Math.max(1,Math.min(amount,100));
+  var result='';
+  if(type==='paragraphs'){
+    var paras=[];
+    for(var i=0;i<amount;i++){
+      var p=genParagraph();
+      if(i===0&&startClassic)p=CLASSIC_START+' '+p;
+      paras.push(format==='html'?'<p>'+p+'</p>':p);
+    }
+    result=paras.join(format==='html'?'\n\n':'\n\n');
+  }else if(type==='sentences'){
+    var sents=[];
+    for(var i=0;i<amount;i++){
+      var s=genSentence();
+      if(i===0&&startClassic)s=CLASSIC_START;
+      sents.push(s);
+    }
+    result=sents.join(' ');
+  }else{
+    var words=[];
+    if(startClassic){
+      var cw=CLASSIC_START.replace('.','').split(' ');
+      for(var i=0;i<Math.min(amount,cw.length);i++)words.push(cw[i]);
+      amount-=words.length;
+    }
+    for(var i=0;i<amount;i++)words.push(randWord());
+    result=words.join(' ');
+  }
+  document.getElementById('output').textContent=result;
+  updateStats(result);
+}
+
+function updateStats(text){
+  var words=text.trim().split(/\s+/).filter(function(w){return w.length>0});
+  var paras=text.split(/\n\n+/).filter(function(p){return p.trim().length>0});
+  document.getElementById('wordCount').textContent=words.length;
+  document.getElementById('charCount').textContent=text.length;
+  document.getElementById('paraCount').textContent=paras.length;
+}
+
+function copyText(){
+  var text=document.getElementById('output').textContent;
+  if(!text){return}
+  navigator.clipboard.writeText(text).then(function(){
+    var toast=document.getElementById('toast');
+    toast.classList.add('show');
+    setTimeout(function(){toast.classList.remove('show')},2000);
+  });
+}
+
+generate();
+</script>
+</body>
+</html>
